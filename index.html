@@ -19,55 +19,21 @@
             "on-tertiary": "#ffffff",
             "on-primary-fixed-variant": "#1e5128",
             "surface-container-low": "#f6f3f0",
-            "on-error-container": "#93000a",
             "surface-bright": "#fcf9f6",
-            "secondary-container": "#f4dbc9",
-            "on-primary-fixed": "#002108",
-            "inverse-on-surface": "#f3f0ed",
             "primary-fixed": "#b8f1b9",
             "surface-variant": "#e5e2df",
             "outline-variant": "#c1c9bd",
-            "primary-fixed-dim": "#9cd49e",
-            "on-tertiary-container": "#9ebf8a",
-            "tertiary": "#1d3710",
-            "error": "#ba1a1a",
-            "surface-tint": "#36693d",
-            "inverse-surface": "#31302f",
-            "outline": "#71796f",
             "primary": "#013a13",
-            "error-container": "#ffdad6",
-            "on-secondary-fixed": "#25190e",
-            "on-error": "#ffffff",
-            "surface-container-high": "#eae8e5",
             "secondary-fixed": "#f6decb",
             "surface-container-highest": "#e5e2df",
-            "surface-container-lowest": "#ffffff",
             "on-background": "#1c1c1a",
-            "on-primary-container": "#8cc38f",
-            "tertiary-container": "#334e24",
-            "on-secondary-container": "#715f50",
             "primary-container": "#1e5128",
             "on-primary": "#ffffff",
             "surface-container": "#f0edea",
-            "surface-dim": "#dcdad7",
-            "on-tertiary-fixed": "#072100",
-            "on-tertiary-fixed-variant": "#324e24",
-            "inverse-primary": "#9cd49e",
-            "secondary-fixed-dim": "#d9c2b0",
-            "tertiary-fixed-dim": "#afd09a",
             "surface": "#fcf9f6",
-            "on-surface-variant": "#414940",
-            "on-secondary": "#ffffff",
             "background": "#fcf9f6",
             "on-surface": "#1c1c1a",
-            "on-secondary-fixed-variant": "#544436",
             "secondary": "#6d5b4c"
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
           },
           fontFamily: {
             "headline": ["Newsreader"],
@@ -95,21 +61,31 @@
         <img alt="Manupi Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhsXxeUU02h6HZwie_MnViGgZcANQ1f6viviAu6Nd1Oda3gancN8Krnm1Qo0SWx-gyTp9CzixgdTLdB9tyGCRR4AMfq4I2EgTiP8vglIus5A2PlKWmTzKoRM696XSYYF2uyMsngKavMQwtDHzLCJD8GoLqFjHdrc-bs260f9GFvNPue2dulGpKvLHggL6GlHKyg6ieO0QQ3CadnkibagrHrNwln_rGkobhBio-nBuXm0KX2r6MKaosbedmdEFgXz4vQHiQQT8UyHhg" />
         <span class="text-2xl font-serif italic text-emerald-900 dark:text-emerald-100">Manupi</span>
       </a>
+      
       <div class="hidden md:flex items-center gap-8">
         <a class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900 dark:border-emerald-400 pb-1 Manrope uppercase tracking-widest text-xs" href="index.html">Home</a>
         <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-xs" href="menu.html">Menu</a>
         <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-xs" href="location.html">Location</a>
       </div>
+
       <div class="flex items-center gap-4">
         <button class="p-2 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300 rounded-full scale-95">
           <span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
         </button>
-        <button class="md:hidden p-2">
-          <span class="material-symbols-outlined">menu</span>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 transition-all rounded-full">
+          <span id="menu-icon" class="material-symbols-outlined" data-icon="menu">menu</span>
         </button>
       </div>
     </div>
   </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-xl border-t border-stone-200 dark:border-stone-800 fixed w-full z-40 shadow-xl transition-all duration-300">
+    <div class="flex flex-col px-8 py-6 gap-6">
+      <a href="index.html" class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900/20 pb-2 Manrope uppercase tracking-widest text-sm">Home</a>
+      <a href="menu.html" class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors border-b border-stone-200 dark:border-stone-800 pb-2 Manrope uppercase tracking-widest text-sm">Menu</a>
+      <a href="location.html" class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors pb-2 Manrope uppercase tracking-widest text-sm">Location</a>
+    </div>
+  </div>
 
   <main>
     <section class="relative min-h-[70vh] flex items-center overflow-hidden px-8">
@@ -142,10 +118,6 @@
         <div>
           <span class="font-label uppercase tracking-widest text-xs text-secondary">The Greenhouse Circle</span>
           <h2 class="font-serif text-4xl text-primary mt-1">Community Leaderboard</h2>
-        </div>
-        <div class="relative w-full md:w-64">
-          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-sm">search</span>
-          <input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg focus:ring-1 focus:ring-primary/20 text-xs font-body" placeholder="Find a Member..." type="text" />
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -181,7 +153,6 @@
           <div class="bg-white rounded-3xl border border-stone-100 shadow-sm overflow-hidden">
             <div class="px-6 py-3 bg-surface-container-low border-b border-stone-100 flex justify-between items-center">
               <span class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold">Top Contributors</span>
-              <span class="font-label text-[8px] uppercase tracking-widest text-stone-400">Hourly Updates</span>
             </div>
             <div class="divide-y divide-stone-100">
               <div class="px-6 py-3 flex items-center justify-between hover:bg-surface-container-lowest transition-colors group">
@@ -195,30 +166,6 @@
                   </div>
                 </div>
                 <span class="font-body text-xs font-bold text-primary">64 visits</span>
-              </div>
-              <div class="px-6 py-3 flex items-center justify-between hover:bg-surface-container-lowest transition-colors group">
-                <div class="flex items-center gap-4">
-                  <span class="font-serif text-xl text-stone-300 w-4 italic group-hover:text-primary transition-colors text-center">5</span>
-                  <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-stone-100 overflow-hidden">
-                      <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0A6Ddwdwbbdwqw_5Wi5D29Q-igb7IMVUuKqpLYaUKUUVttxxLkc3h8ee1V-BuCx4T1pG46fL-2GlLF-na89OeN02JmIKkZ6nAba3PvdkL5LFne0wxl_QazU98zLCTmTkqxvNlPZ1xZMUUlZGiewEqIeRIBQEPkP30CWRQNbkgiycT6ihzmLVXzZ70mo3GbAmESsKzBij-bWpDbnESRt5Dt5JBRaCuOqlVeN6PcyrDwsIjdLpV16MDYEril9OUtnJwwwwKxrFV5es0" />
-                    </div>
-                    <h5 class="font-bold text-primary text-sm">Indah Rahayu</h5>
-                  </div>
-                </div>
-                <span class="font-body text-xs font-bold text-primary">59 visits</span>
-              </div>
-              <div class="px-6 py-3 flex items-center justify-between hover:bg-surface-container-lowest transition-colors group">
-                <div class="flex items-center gap-4">
-                  <span class="font-serif text-xl text-stone-300 w-4 italic group-hover:text-primary transition-colors text-center">6</span>
-                  <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-full bg-stone-100 overflow-hidden">
-                      <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzIAFqahftIQodqXGVtPW8Gt7aQxhiOMCBRtExXWzXb3ye_TwXtrf07xYEQYx8bgGMuiP_v01ouiwCI87_0mwafB6tu3VEmuw16uyxDo3ZwylhYjLvlUJq5bWQt1XI5eNXre_FlR4HMbH3KQYQ1rwVApK1D2Zk1WaI3EjV6B-cGbWlffV2J32Dfrrrqxc5VcvE45B1EBl7dQi--VjeQYJN2_NL-vbebkEGVkK8cGP6uby2qyJP59Fihtr_YX-zWWxBt_gZiURLXdhj" />
-                    </div>
-                    <h5 class="font-bold text-primary text-sm">Kevin Wijaya</h5>
-                  </div>
-                </div>
-                <span class="font-body text-xs font-bold text-primary">52 visits</span>
               </div>
             </div>
             <button class="w-full py-3 text-center font-label text-[10px] uppercase tracking-[0.2em] text-secondary border-t border-stone-100 hover:bg-stone-50 transition-colors">Full Leaderboard</button>
@@ -235,7 +182,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="bg-surface-container-low rounded-2xl p-8 relative overflow-hidden group min-h-[200px] flex flex-col justify-end">
           <div class="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
-            <img class="w-full h-full object-cover" data-alt="abstract macro photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEOh_GyetoORwnw_swUdrrlIR4i_3SE7b-TftAtfTrx5TV4I-9gTpsyh5cK7lYRCiHgKuoYff3mfwVCSobRbagwMyUw53BYa67Lxh7XTrHt5AjJePDcvookCltpuNesMeTmnSYWBlOc6_pEt1XrTepstemDeLwGtLRQ933Nr9FjUlTiOq_Qjj_Yvd49GYNiFfN5v6RTo66l8OjW24BXNHhxrT86gaTO9XUeqdmnF6FBPgTrYjNK05NpA2lRj0TTru7UqtRazHmZ1fa" />
+            <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEOh_GyetoORwnw_swUdrrlIR4i_3SE7b-TftAtfTrx5TV4I-9gTpsyh5cK7lYRCiHgKuoYff3mfwVCSobRbagwMyUw53BYa67Lxh7XTrHt5AjJePDcvookCltpuNesMeTmnSYWBlOc6_pEt1XrTepstemDeLwGtLRQ933Nr9FjUlTiOq_Qjj_Yvd49GYNiFfN5v6RTo66l8OjW24BXNHhxrT86gaTO9XUeqdmnF6FBPgTrYjNK05NpA2lRj0TTru7UqtRazHmZ1fa" />
           </div>
           <div class="relative z-10">
             <h3 class="font-serif text-xl text-primary mb-2">Grounded Stability</h3>
@@ -255,53 +202,10 @@
             <span class="font-label uppercase text-[10px] tracking-widest text-secondary text-right">Ethical<br />Arabica</span>
           </div>
           <div class="bg-surface-container rounded-2xl overflow-hidden relative">
-            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="rustic coffee" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_xF8TVOL0B-CBobYEgMNf0XW3C3aAXNaubQuT6V0qmqX6sPQTxnuZUNgMXAeqA5RlMoBXaB2O8BorY7b4ocBGEFi1wZRYJ_eVj1Kf9BKP_M7iB3z2xtLVh4nynbBywgD6QWsM9qg1XV2ry_fwa6GDy_RPbkSFntvirx2vEcRvkkoONLXcxrOZ1SnWLtXH03LirDVEgydWYrEy-CJYgfahWW0bJkQc8BCOSocavbaMVqAx_jIo1moxITy5y6As0uee7Fht5q_0ACPV" />
+            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_xF8TVOL0B-CBobYEgMNf0XW3C3aAXNaubQuT6V0qmqX6sPQTxnuZUNgMXAeqA5RlMoBXaB2O8BorY7b4ocBGEFi1wZRYJ_eVj1Kf9BKP_M7iB3z2xtLVh4nynbBywgD6QWsM9qg1XV2ry_fwa6GDy_RPbkSFntvirx2vEcRvkkoONLXcxrOZ1SnWLtXH03LirDVEgydWYrEy-CJYgfahWW0bJkQc8BCOSocavbaMVqAx_jIo1moxITy5y6As0uee7Fht5q_0ACPV" />
             <div class="absolute inset-0 bg-primary/20 flex items-center justify-center p-2 text-center">
               <span class="bg-surface/80 backdrop-blur-md px-3 py-1 rounded-full font-serif italic text-primary text-[10px]">Brewed for peace</span>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-surface-container-low">
-      <div class="max-w-7xl mx-auto px-8">
-        <div class="flex justify-between items-end mb-10">
-          <div>
-            <span class="font-label uppercase tracking-widest text-xs text-secondary">The Collection</span>
-            <h2 class="font-serif text-4xl text-primary mt-1">Signature Brews</h2>
-          </div>
-          <div class="flex gap-2">
-            <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined text-lg">chevron_left</span>
-            </button>
-            <button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-colors">
-              <span class="material-symbols-outlined text-lg">chevron_right</span>
-            </button>
-          </div>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-          <div class="group cursor-pointer">
-            <div class="aspect-square bg-surface rounded-2xl mb-4 overflow-hidden relative">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="iced pour-over coffee" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVlvVEd0DcKvG74O2HFZ5ZxSEcz8X307lnixtOPPkQZ8jNSUACN7SVggtnY_klTmLTT_VP3K1lgOjEBep6pKtlqII8hq2TbvkzpOvGwGPo2RKJp4u2Kcu52AVATy-sRRypqQsn2wWnU6AqopC_AGfZYgP7bnWRd6DEkvEqV8R_WoaAWxYn_RqknZmhBEE5MImXxcA1-iukE9aHT-1gKeaYsFdEBhA9C2JiZuv-wF_DKM114L7va4zUWRTkEDWcdU0s6BzJVBgSsp4p" />
-              <div class="absolute top-2 right-2 bg-primary text-on-primary text-[8px] font-bold px-2 py-0.5 rounded-full uppercase">New</div>
-            </div>
-            <span class="font-label uppercase text-[8px] text-emerald-800 font-bold tracking-widest">Botanical</span>
-            <h3 class="font-serif text-lg text-primary mt-1">Mint Forest Cold Brew</h3>
-          </div>
-          <div class="group cursor-pointer">
-            <div class="aspect-square bg-surface rounded-2xl mb-4 overflow-hidden">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="hot latte" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEAyNIrIA2Z6FXHDxiV-HwsuMQXu1Lwh6Iv9gySNpFfBToFynFVigQbZ-f4mHEg7H26t-RySI7lVbJ4VZynLuKLZ_JQP-PHwYrVvl31yQbhRMurgh0v4lR69iq09GhIkz0FNX4MkD57g6yGtf2xyBgzyVnv2AME87M55UHUBBXWMySjsE2Uz0WnKQ69G5h1x7G0Vw_YMPaaBf95joJShWJitPxU6pyHOpPwp7WxD9sJIrBvkrnO4A2Jm5zTR2WWwEp-xq2Zz-oeVqC" />
-            </div>
-            <span class="font-label uppercase text-[8px] text-emerald-800 font-bold tracking-widest">Classics</span>
-            <h3 class="font-serif text-lg text-primary mt-1">Greenhouse Latte</h3>
-          </div>
-          <div class="group cursor-pointer col-span-2 md:col-span-1">
-            <div class="aspect-[2/1] md:aspect-square bg-surface rounded-2xl mb-4 overflow-hidden">
-              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="v60 manual brew" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs7IpYamAiOWCtNZQCGWbJxAuE-C2mJITuCdXMnTBXfqjy2t3I5tTgi8COabJwV1lvJpxF61YktFfyZfZcyGDvm9xmLs7eVT8aQJZ6TncEBpm1Mi7-VgG9MkboL7-xOHtkM84yjRVCuDXjMj0dT6LxC9-M7usw_OIwYKy210Z5XyqKc1yTuqbz49yYiGcAXl3x9e1ma5InT5vzR4yupusIMUyx0UosdWKL80cbKgcyd0TQy3W8eRS3FqYxV-YwzAxD87Pip4Gbly1Z" />
-            </div>
-            <span class="font-label uppercase text-[8px] text-emerald-800 font-bold tracking-widest">Single Origin</span>
-            <h3 class="font-serif text-lg text-primary mt-1">Manual Bloom Pour</h3>
           </div>
         </div>
       </div>
@@ -342,16 +246,6 @@
           <span class="font-label uppercase tracking-widest text-xs text-stone-400">Connect</span>
           <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Instagram</a>
           <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">WhatsApp</a>
-          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Email</a>
-        </div>
-        <div class="flex flex-col gap-4 col-span-2 sm:col-span-1">
-          <span class="font-label uppercase tracking-widest text-xs text-stone-400">Visit</span>
-          <a class="bg-stone-200/50 dark:bg-stone-800/50 p-4 rounded-xl hover:bg-stone-200 transition-colors block" href="location.html">
-            <h5 class="font-serif text-emerald-900 dark:text-emerald-100 text-sm mb-1">The Greenhouse</h5>
-            <p class="text-xs text-stone-600 dark:text-stone-400 font-body">
-              Jl. Pangeran Samudera, No. 88<br />Banjarbaru, South Kalimantan
-            </p>
-          </a>
         </div>
       </div>
     </div>
@@ -363,5 +257,19 @@
     </button>
   </div>
 
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      if (menu.classList.contains('hidden')) {
+        icon.textContent = 'menu';
+      } else {
+        icon.textContent = 'close';
+      }
+    });
+  </script>
 </body>
 </html>
