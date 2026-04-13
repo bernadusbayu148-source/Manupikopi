@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Menu | Manupi Coffee Shop</title>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed": "#cbedb4",
+            "on-tertiary": "#ffffff",
+            "on-primary-fixed-variant": "#1e5128",
+            "surface-container-low": "#f6f3f0",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fcf9f6",
+            "secondary-container": "#f4dbc9",
+            "on-primary-fixed": "#002108",
+            "inverse-on-surface": "#f3f0ed",
+            "primary-fixed": "#b8f1b9",
+            "surface-variant": "#e5e2df",
+            "outline-variant": "#c1c9bd",
+            "primary-fixed-dim": "#9cd49e",
+            "on-tertiary-container": "#9ebf8a",
+            "tertiary": "#1d3710",
+            "error": "#ba1a1a",
+            "surface-tint": "#36693d",
+            "inverse-surface": "#31302f",
+            "outline": "#71796f",
+            "primary": "#013a13",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#25190e",
+            "on-error": "#ffffff",
+            "surface-container-high": "#eae8e5",
+            "secondary-fixed": "#f6decb",
+            "surface-container-highest": "#e5e2df",
+            "surface-container-lowest": "#ffffff",
+            "on-background": "#1c1c1a",
+            "on-primary-container": "#8cc38f",
+            "tertiary-container": "#334e24",
+            "on-secondary-container": "#715f50",
+            "primary-container": "#1e5128",
+            "on-primary": "#ffffff",
+            "surface-container": "#f0edea",
+            "surface-dim": "#dcdad7",
+            "on-tertiary-fixed": "#072100",
+            "on-tertiary-fixed-variant": "#324e24",
+            "inverse-primary": "#9cd49e",
+            "secondary-fixed-dim": "#d9c2b0",
+            "tertiary-fixed-dim": "#afd09a",
+            "surface": "#fcf9f6",
+            "on-surface-variant": "#414940",
+            "on-secondary": "#ffffff",
+            "background": "#fcf9f6",
+            "on-surface": "#1c1c1a",
+            "on-secondary-fixed-variant": "#544436",
+            "secondary": "#6d5b4c"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          fontFamily: {
+            "headline": ["Newsreader"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+    .font-serif { font-family: 'Newsreader', serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="bg-background text-on-background">
+
+  <header class="bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl docked full-width top-0 sticky z-50">
+    <div class="flex justify-between items-center w-full px-4 md:px-8 py-3 max-w-7xl mx-auto">
+      <a class="text-xl font-serif italic text-emerald-900 dark:text-emerald-100" href="#">
+        <img alt="Manupi Logo" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhsXxeUU02h6HZwie_MnViGgZcANQ1f6viviAu6Nd1Oda3gancN8Krnm1Qo0SWx-gyTp9CzixgdTLdB9tyGCRR4AMfq4I2EgTiP8vglIus5A2PlKWmTzKoRM696XSYYF2uyMsngKavMQwtDHzLCJD8GoLqFjHdrc-bs260f9GFvNPue2dulGpKvLHggL6GlHKyg6ieO0QQ3CadnkibagrHrNwln_rGkobhBio-nBuXm0KX2r6MKaosbedmdEFgXz4vQHiQQT8UyHhg" />
+      </a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-[10px]" href="#">Home</a>
+        <a class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900 dark:border-emerald-400 pb-0.5 Manrope uppercase tracking-widest text-[10px]" href="#">Menu</a>
+        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-[10px]" href="https://maps.app.goo.gl/w4SkiXUK7CCC7pMP8">Location</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button class="p-1.5 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300 rounded-full">
+          <span class="material-symbols-outlined text-xl" data-icon="shopping_bag">shopping_bag</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+    <section class="mb-12 md:mb-16 text-center md:text-left flex flex-col md:flex-row items-center gap-6 md:gap-12">
+      <div class="flex-1 space-y-4">
+        <span class="text-[10px] font-label uppercase tracking-[0.2em] text-secondary">Botanical Brews</span>
+        <h1 class="text-5xl md:text-7xl font-serif text-primary leading-tight">Curated <br />for the Soul</h1>
+        <p class="text-base text-on-surface-variant max-w-sm mx-auto md:mx-0 font-body leading-relaxed">
+          A sensory journey through the heart of Banjarbaru. Every cup is a conversation between city precision and nature's wild grace.
+        </p>
+      </div>
+      <div class="flex-1 w-full md:max-w-md aspect-[4/3] md:aspect-[4/5] rounded-[2rem] overflow-hidden bg-surface-container shadow-xl relative group">
+        <img alt="Artisan Coffee" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeDTDvqIv78nkO0d6f4D-3Z5w9g_1ZOZa3edG8rP7DsjLPWAALyMX26l1w72E0k-ANjCXe5nQczMfUZqrf48Bc5Ifc9jAqQQGW_379b4-28wOyaDSLJ52ekAJbL_C1ZvqB34zFGdGA4Sn1DU6wX_W00LhltUnpIlHrOX7gvSiTFLB23L3PSUBCoLYIobx0pTKi2iCKhyxUVWWhm3GXsuJP2Frsxl_jbVRe53oRKn3dKnToji_bZnCOnxjFoJxOtbegSs_J1Y10AKoW" />
+        <div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent opacity-60"></div>
+      </div>
+    </section>
+
+    <div class="flex overflow-x-auto no-scrollbar gap-2 mb-10 justify-start md:justify-center sticky top-[60px] z-40 bg-background/80 backdrop-blur-md py-3 -mx-4 px-4 md:mx-0">
+      <button class="whitespace-nowrap px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-label text-xs font-bold shadow-md transition-transform active:scale-95">All Offerings</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface font-label text-xs hover:bg-surface-variant transition-all">Coffee</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface font-label text-xs hover:bg-surface-variant transition-all">Non-Coffee</button>
+      <button class="whitespace-nowrap px-6 py-2 rounded-full bg-surface-container-high text-on-surface font-label text-xs hover:bg-surface-variant transition-all">Snacks</button>
+    </div>
+
+    <div class="mb-16">
+      <div class="flex flex-row justify-between items-center gap-4 mb-8">
+        <h2 class="text-3xl md:text-4xl font-serif text-primary">Coffee</h2>
+        <div class="h-px flex-1 bg-outline-variant/30"></div>
+        <span class="font-label uppercase tracking-widest text-[10px] text-secondary hidden sm:inline">Manual & Espresso</span>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+        <div class="group">
+          <div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-surface-container-low shadow-sm">
+            <img alt="Signature Latte" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU-6AQKV5wiKNrv386rCCYLF_PtbsaIAoiiWbT7O4i-VFkBg8Xs7N7r-ujdDBrkHgMZblgCzloIbBgeEYNLsnp87y6wGja3CtdIZ1ML2vE5olpwjbSFh50wCg5cAB5WE854DYo2t6HYe3AJGCGhNQcre4uZLIUOf_GqbPRDlQNpdGNbhcOCIq9B2lhHOFkzeKapjNDu6d9bgFpC27Op5XCH0aMpVQhl13htrCgViFVrbwwjWqohn0mSAbahZ_O6Mm2_iF9wSJM_XrX" />
+          </div>
+          <div class="flex justify-between items-baseline mb-1">
+            <h3 class="text-base md:text-lg font-serif text-on-surface leading-snug">Signature Latte</h3>
+            <span class="text-primary font-bold text-sm">42k</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Local botanical syrup & edible petals.</p>
+        </div>
+        <div class="group">
+          <div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-surface-container-low shadow-sm">
+            <img alt="V60 Pour Over" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT2Ui6QtXNl-d6WVJ1JO4s_vIpJ5MCXBSRpfHl8e3Cv9HkZrpwwZ30nFFlZTlM3u7Efgbxx3-EovWkajYr_WZuPjNhJCAuNdjH4d4zZyR_TYq0ilJ-jpdksvwaIRxr-0eXuJttIEXAE3T6tZ3i4y1fbyidwv8OeTrDNgNZ8yLPVAq17PKHyTPAwG06sXekXgW9kQWqP-jjIJNVsURzr3nt-bDOaACvjgGTFEFp4i0zPKlKjZRUBwDbQaxghBYFjk_sotIlch5O-8D1" />
+          </div>
+          <div class="flex justify-between items-baseline mb-1">
+            <h3 class="text-base md:text-lg font-serif text-on-surface leading-snug">Origin V60</h3>
+            <span class="text-primary font-bold text-sm">38k</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Rotating local single origin beans.</p>
+        </div>
+        <div class="group">
+          <div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-surface-container-low shadow-sm">
+            <img alt="Iced Dirty Chai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYNXC5PFUb_GwzdRWcNDId5RS3DXoDBEeqjVXLE2ku1RIHiGpJ2gBIzkqE8e5HeYnRf8k2lTWVsiuvCWMgbik2NMMGj5d8HTuVKIeotRBpqmwIacUXYhcI3LO3UgLstI7bFm4N5hHlEk8FFNCwZZVWxWeduiUhEn3F6T5qn6mx5EGSl-_xaYkdLucEO56bNcbMClXvEPLxsmdLv7pWrW6mvaIi33ybR_I38IF_mG6itO8X_AbUQORRnLbJUGv1HNpLMap7MbMmXhn1" />
+          </div>
+          <div class="flex justify-between items-baseline mb-1">
+            <h3 class="text-base md:text-lg font-serif text-on-surface leading-snug">Forest Dirty Chai</h3>
+            <span class="text-primary font-bold text-sm">45k</span>
+          </div>
+          <p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Spiced tea base with double ristretto.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-16 py-8 px-6 md:py-12 md:px-12 rounded-[2.5rem] bg-surface-container-low relative overflow-hidden">
+      <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+        <h4 class="text-7xl font-serif italic text-primary">Manupi</h4>
+      </div>
+      <div class="relative z-10">
+        <div class="mb-8">
+          <h2 class="text-3xl md:text-4xl font-serif text-primary mb-1">Botanical Elixirs</h2>
+          <p class="font-label uppercase tracking-widest text-[10px] text-secondary">Refreshing Non-Coffee Options</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="space-y-6">
+            <div class="flex gap-4 group">
+              <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-surface">
+                <img alt="Matcha Latte" class="w-full h-full object-cover group-hover:scale-110 transition-duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKkQlt8orYiIO-uG5dZ_X0ukWOS8bmqZgtLRla7CApT-7moVupEL2WSYEoYfPjexduuQOVXW-LbIeqRUUmP7ML2YCDrI7NEAvQjuuKYRJhYD0SwZYdxObyH1grkjE1rinP2mE0P7OhSWAia52_LirlbWT_EvfUKm3aWsVw0M7m1TMTB5O2mgQ1Wg1wIvbA4TloKrhRh0meW3EwWyxKjs5KHzrS-eBG2O-Z4vK2xRwkavUstmhUUaJJfq_C1_tOVivcMnbZfGUoGY9Z" />
+              </div>
+              <div class="flex-1 border-b border-outline-variant/10 pb-2">
+                <div class="flex justify-between items-baseline mb-1">
+                  <h4 class="text-base font-serif">Ceremonial Matcha</h4>
+                  <span class="text-primary font-bold text-sm">48k</span>
+                </div>
+                <p class="text-xs text-on-surface-variant italic">Uji grade matcha & oat milk.</p>
+              </div>
+            </div>
+            <div class="flex gap-4 group">
+              <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-surface">
+                <img alt="Hibiscus Tea" class="w-full h-full object-cover group-hover:scale-110 transition-duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubau_5vVAG32aLiH6tCg7uyp4WY__EGNclCWdMZKItDaWSftbz35IXwNuLK94i0Q1i12BkjbfLLoSlCOMBLNdmzSwGPgBZVqwX5yITeMu8gsg5DIdzfhCp4geC4Q-dMgkBDcFzkH0-PsGak0CGK0r8d-Mtvqw9krfoohw4zUVmq3SnHyb17NPJw7SCUutDWQmGNoogjcx3rZYVJmOgudZzwgbk4yrIPVnVrCJphUhfVIRez1x22UeB56iz8qcbq_N3THknE86JlHe" />
+              </div>
+              <div class="flex-1 border-b border-outline-variant/10 pb-2">
+                <div class="flex justify-between items-baseline mb-1">
+                  <h4 class="text-base font-serif">Garden Hibiscus</h4>
+                  <span class="text-primary font-bold text-sm">35k</span>
+                </div>
+                <p class="text-xs text-on-surface-variant italic">Cold-brew with berries & soda.</p>
+              </div>
+            </div>
+          </div>
+          <div class="aspect-[16/9] md:aspect-[4/5] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-lg">
+            <img alt="Botanical Drink" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0aeMKL2hEA7p-WRwkLGASeNRRsmkkjZWgN-JKHzLyV_2p-ma1Ta7xUyOO8kiMuFqCvvoeYmgop564PRni_MDy3Vo_AWuhmb1ZQBgUaupaLwcGqVa-4I5Q5qgvMILKUqKJJNmkrK5msWi3V0CgpmNvz9CT7auNy9GzE24tAeVFI96rPQEdOOLBmwQJnJrDc0MPqhiiVVDyPrad9PdQiRKgAdjmPAy_kDbjmDr2wf-qETmltAKz8OMbyvKmHKQPjkotYWo9eScX9Gm" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-12">
+      <div class="flex flex-row justify-between items-center gap-4 mb-8">
+        <h2 class="text-3xl md:text-4xl font-serif text-primary">Snacks</h2>
+        <div class="h-px flex-1 bg-outline-variant/30"></div>
+        <span class="font-label uppercase tracking-widest text-[10px] text-secondary hidden sm:inline">Sweet & Savoury</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:h-[450px]">
+        <div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[180px] md:h-auto">
+          <img alt="Truffle Fries" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFNCK79DN-W3_k6nYz6hs2jAa5u1QUwyJhMbuIGN_efBHE8DMhbqFFP-Sn6SzbbLcYyZPExQY7LWNu0qUm2sucdGZc72h_NMXbzq97gB0B-QijYHEOLhsgwoyK9Ud15yX8LZdwgsYxj2Z2wyHECPXuCPzZjvZAj2oIbiJFZLaf6r6nO8ORHRzYcAACWDjmERTTRCKhXkVTJ3_0HRPG9QfU_1FFA6HZWnOnFlhZ0D0cUHJTI2ReA-3pqEyUZ-jS8d7gI6A9CqIMQaNU" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
+          <div class="absolute bottom-0 left-0 p-4 md:p-6 text-white">
+            <h4 class="text-xl md:text-2xl font-serif mb-1 leading-tight">Truffle Parm Fries</h4>
+            <div class="flex items-center gap-3">
+              <span class="text-[10px] uppercase tracking-widest bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full">35k</span>
+            </div>
+          </div>
+        </div>
+        <div class="md:col-span-2 group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[120px] md:h-auto">
+          <img alt="Sourdough" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4IwbU7ZnuFl5ODRZdzc0yWR5JMhB7jHcgezxFw7agi4fzCoS-4-P3NJsJpRHK2AMz__i4qcWaxZaK1hkfWIbV-fSdas8GEv5q4j1otX0YS2sq8PORNdbceJszXaQslClk-65BzJOooL2oKvojVE0OFmQAH270vC-naUF0QNfqC7ZDSHEy6ljVgzRJKU8vcwhBW5Xi2K7LuU-7iHdkAGnhQcbw1FWfaTFr-VCsWWE8Dj4dd-ShN6fV3kRxsxmeE7SpJ6ovRoAoDjDi" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
+          <div class="absolute bottom-0 left-0 p-4 text-white">
+            <h4 class="text-lg font-serif mb-0.5">Avocado Toast</h4>
+            <span class="text-[10px] opacity-80">55k</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[120px] md:h-auto">
+          <img alt="Croissant" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClQNBzA1TGyfGgcI1sSWK1Fs0PAzxiE3aI34VJigXXcnTwRgs5umwOpMcix8KTK0JFZs4X-Q3do_mzgKc4O_nc-5ZO3FgUYbuDe9yxk3j1uMhmseZmGw4y_NYWQwXdV16mhuclrPKO86gDEEPWCFEZon_ozzxZaiUXTZU2wgjyjr9lUKGDzWtxLcdkACJU4ZaKwVhxuw9iQTMNBlI_gT5XjWZeIPq175AgYt9BAMTUptffkwjnWuAuxW9doLXTee3VLVnuS4BVZI83" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
+          <div class="absolute bottom-0 left-0 p-4 text-white">
+            <h4 class="text-base font-serif">Almond Croissant</h4>
+            <span class="text-[10px] opacity-80">28k</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[120px] md:h-auto">
+          <img alt="Dessert" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD60P4sIyEU1_QA0kp73L1_I9vJKtAJHX4hLOiZCWO7lqNl8mGBumlQua4oIuIeCtT5Z64vmgvce-_rCKKUNqNOGyBzmB4R4pBBEbj4OpftlMwH5dX5MZCdMFL48JDAaVfVt-yE4M6zgqxM2cP75tyfnTMuVlrcqVl60jHMJPGcCR00PTGA2PlWWStiv3qgYeOOH4TAgGgMQYta2jFWxDDg6dPh5IYzrSnnpenz8PbDfjyqgdKvKmasQbUZcG24XSOzv-DRw-ub36vI" />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
+          <div class="absolute bottom-0 left-0 p-4 text-white">
+            <h4 class="text-base font-serif">Choco Lava</h4>
+            <span class="text-[10px] opacity-80">42k</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-stone-100 dark:bg-stone-900 w-full rounded-t-3xl mt-12">
+    <div class="w-full px-8 py-12 flex flex-col md:flex-row justify-between items-start max-w-7xl mx-auto gap-12">
+      <div class="space-y-6">
+        <div class="text-xl font-serif text-emerald-900 dark:text-emerald-100 opacity-60">
+          <img alt="Manupi Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhsXxeUU02h6HZwie_MnViGgZcANQ1f6viviAu6Nd1Oda3gancN8Krnm1Qo0SWx-gyTp9CzixgdTLdB9tyGCRR4AMfq4I2EgTiP8vglIus5A2PlKWmTzKoRM696XSYYF2uyMsngKavMQwtDHzLCJD8GoLqFjHdrc-bs260f9GFvNPue2dulGpKvLHggL6GlHKyg6ieO0QQ3CadnkibagrHrNwln_rGkobhBio-nBuXm0KX2r6MKaosbedmdEFgXz4vQHiQQT8UyHhg" />
+        </div>
+        <p class="font-body text-sm text-stone-600 dark:text-stone-400 max-w-xs leading-relaxed">
+          © 2024 Rumah Kopi Manupi Banjarbaru. Crafted for the digital greenhouse.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-x-16 gap-y-8">
+        <div class="flex flex-col gap-4">
+          <span class="font-label uppercase tracking-widest text-xs text-stone-400">Navigation</span>
+          <a class="text-emerald-800 dark:text-emerald-300 hover:underline transition-all text-sm" href="#">Home</a>
+          <a class="text-emerald-800 dark:text-emerald-300 font-bold hover:underline transition-all text-sm" href="#">Menu</a>
+          <a class="text-emerald-800 dark:text-emerald-300 hover:underline transition-all text-sm" href="https://maps.app.goo.gl/w4SkiXUK7CCC7pMP8">Location</a>
+        </div>
+        <div class="flex flex-col gap-4">
+          <span class="font-label uppercase tracking-widest text-xs text-stone-400">Connect</span>
+          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Instagram</a>
+          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">WhatsApp</a>
+          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Email</a>
+        </div>
+        <div class="flex flex-col gap-4 col-span-2 sm:col-span-1">
+          <span class="font-label uppercase tracking-widest text-xs text-stone-400">Visit</span>
+          <a class="bg-stone-200/50 dark:bg-stone-800/50 p-4 rounded-xl block hover:bg-stone-300/50 dark:hover:bg-stone-700/50 transition-colors" href="https://maps.app.goo.gl/w4SkiXUK7CCC7pMP8" target="_blank">
+            <h5 class="font-serif text-emerald-900 dark:text-emerald-100 text-sm mb-1">The Greenhouse</h5>
+            <p class="text-xs text-stone-600 dark:text-stone-400 font-body">
+              Jl. Pangeran Samudera, No. 88<br />Banjarbaru, South Kalimantan
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
