@@ -119,7 +119,7 @@
         
         <div class="relative w-full md:w-72">
           <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-lg">search</span>
-          <input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-body transition-all" placeholder="Find a Member..." type="text" />
+          <input id="search-member" class="w-full pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-body transition-all" placeholder="Find a Member..." type="text" />
         </div>
       </div>
       
@@ -138,7 +138,6 @@
             </div>
             <div id="list-container" class="divide-y divide-stone-100">
                </div>
-            <button class="w-full py-3 text-center font-label text-[10px] uppercase tracking-[0.2em] text-secondary border-t border-stone-100 hover:bg-stone-50 transition-colors">Full Leaderboard</button>
           </div>
         </div>
       </div>
@@ -244,25 +243,43 @@
       icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
     });
 
-    // 2. Leaderboard Real-time Logic
-    const API_URL = 'https://script.google.com/macros/s/AKfycbvsakA-kBocsAclMitrZ6WAOW6HZPZNwgJiXGdNwmtZhO4GPHnwzR5qDCQU5t0hphvxQ/exec'; 
+    // 2. Leaderboard Real-time & Search Logic
+    
+    // URL APPS SCRIPT BARU KAMU
+    const API_URL = 'https://script.google.com/macros/s/AKfycbwVOMQ_b31fxQHnh8UqP34dsAdAsf_7Eqhc8zgfKl5uo8_CeEFLa0T2ly1J93ly-HZRyQ/exec'; 
+
+    let allLeaderboardData = []; // Menyimpan semua data dari Spreadsheet
 
     async function fetchLeaderboard() {
       try {
         const response = await fetch(API_URL);
         const data = await response.json();
-        renderLeaderboard(data);
+        
+        // Menyimpan urutan ranking asli sebelum difilter
+        allLeaderboardData = data.map((item, index) => ({ ...item, rank: index + 1 }));
+        
+        // Hanya re-render jika kolom search sedang kosong
+        const searchInput = document.getElementById('search-member');
+        if (!searchInput.value) {
+          renderLeaderboard(allLeaderboardData);
+        }
       } catch (error) {
         console.error('Error fetching leaderboard:', error);
       }
     }
 
+    // Fungsi Render Tampilan Leaderboard
     function renderLeaderboard(data) {
       const podiumContainer = document.getElementById('podium-container');
       const listContainer = document.getElementById('list-container');
-      if(data.length === 0) return;
+      
+      if(data.length === 0) {
+        podiumContainer.innerHTML = '<div class="text-center py-10 text-stone-500 font-body text-sm">Member tidak ditemukan.</div>';
+        listContainer.innerHTML = '';
+        return;
+      }
 
-      // Render Top 3
+      // Render Top 3 (Podium)
       let podiumHTML = '';
       if(data[0]) {
         podiumHTML += `
@@ -273,7 +290,7 @@
                 <img alt="Top Member" class="w-full h-full object-cover rounded-full" src="${data[0].imageUrl}" />
               </div>
               <h3 class="font-serif text-2xl italic truncate w-full px-2">${data[0].name}</h3>
-              <p class="font-label text-[10px] uppercase tracking-widest opacity-80 mt-1">Rank 1 • ${data[0].visits} Visits</p>
+              <p class="font-label text-[10px] uppercase tracking-widest opacity-80 mt-1">Rank ${data[0].rank} • ${data[0].visits} Visits</p>
             </div>
           </div>
         `;
@@ -283,10 +300,10 @@
         podiumHTML += `
           <div class="bg-surface-container rounded-2xl p-4 text-center border border-outline-variant/20 transition-all duration-500">
             <div class="w-12 h-12 mx-auto rounded-full border-2 border-stone-300 p-0.5 mb-2 overflow-hidden bg-white">
-              <img alt="Rank 2" class="w-full h-full object-cover rounded-full" src="${data[1].imageUrl}" />
+              <img alt="Rank" class="w-full h-full object-cover rounded-full" src="${data[1].imageUrl}" />
             </div>
             <h4 class="font-serif text-base text-primary truncate">${data[1].name}</h4>
-            <p class="font-label text-[8px] uppercase tracking-widest text-secondary">Rank 2 • ${data[1].visits} Visits</p>
+            <p class="font-label text-[8px] uppercase tracking-widest text-secondary">Rank ${data[1].rank} • ${data[1].visits} Visits</p>
           </div>
         `;
       }
@@ -294,23 +311,23 @@
         podiumHTML += `
           <div class="bg-surface-container rounded-2xl p-4 text-center border border-outline-variant/20 transition-all duration-500">
             <div class="w-12 h-12 mx-auto rounded-full border-2 border-stone-300 p-0.5 mb-2 overflow-hidden bg-white">
-              <img alt="Rank 3" class="w-full h-full object-cover rounded-full" src="${data[2].imageUrl}" />
+              <img alt="Rank" class="w-full h-full object-cover rounded-full" src="${data[2].imageUrl}" />
             </div>
             <h4 class="font-serif text-base text-primary truncate">${data[2].name}</h4>
-            <p class="font-label text-[8px] uppercase tracking-widest text-secondary">Rank 3 • ${data[2].visits} Visits</p>
+            <p class="font-label text-[8px] uppercase tracking-widest text-secondary">Rank ${data[2].rank} • ${data[2].visits} Visits</p>
           </div>
         `;
       }
       podiumHTML += `</div>`;
       podiumContainer.innerHTML = podiumHTML;
 
-      // Render Rank 4-10
+      // Render Sisa List
       let listHTML = '';
-      for(let i = 3; i < Math.min(data.length, 10); i++) {
+      for(let i = 3; i < data.length; i++) {
         listHTML += `
           <div class="px-6 py-3 flex items-center justify-between hover:bg-surface-container-lowest transition-colors group">
             <div class="flex items-center gap-4">
-              <span class="font-serif text-xl text-stone-300 w-4 italic group-hover:text-primary transition-colors text-center">${i + 1}</span>
+              <span class="font-serif text-xl text-stone-300 w-6 italic group-hover:text-primary transition-colors text-center">${data[i].rank}</span>
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-full bg-stone-100 overflow-hidden bg-white">
                   <img alt="User" class="w-full h-full object-cover" src="${data[i].imageUrl}" />
@@ -325,8 +342,28 @@
       listContainer.innerHTML = listHTML;
     }
 
+    // Event Listener untuk Search Bar
+    const searchInput = document.getElementById('search-member');
+    searchInput.addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase();
+      
+      if (keyword === '') {
+        // Jika kosong, kembalikan semua data
+        renderLeaderboard(allLeaderboardData);
+      } else {
+        // Jika ada ketikan, filter nama yang cocok
+        const filteredData = allLeaderboardData.filter(member => 
+          member.name.toLowerCase().includes(keyword)
+        );
+        renderLeaderboard(filteredData);
+      }
+    });
+
+    // Panggil fetch pertama kali web dimuat
     fetchLeaderboard();
-    setInterval(fetchLeaderboard, 10000); // Live update setiap 10 detik
+    
+    // Auto-update (Hanya background update, tidak merusak tampilan saat mencari)
+    setInterval(fetchLeaderboard, 10000); 
   </script>
 </body>
 </html>
