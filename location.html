@@ -19,55 +19,21 @@
             "on-tertiary": "#ffffff",
             "on-primary-fixed-variant": "#1e5128",
             "surface-container-low": "#f6f3f0",
-            "on-error-container": "#93000a",
             "surface-bright": "#fcf9f6",
-            "secondary-container": "#f4dbc9",
-            "on-primary-fixed": "#002108",
-            "inverse-on-surface": "#f3f0ed",
             "primary-fixed": "#b8f1b9",
             "surface-variant": "#e5e2df",
             "outline-variant": "#c1c9bd",
-            "primary-fixed-dim": "#9cd49e",
-            "on-tertiary-container": "#9ebf8a",
-            "tertiary": "#1d3710",
-            "error": "#ba1a1a",
-            "surface-tint": "#36693d",
-            "inverse-surface": "#31302f",
-            "outline": "#71796f",
             "primary": "#013a13",
-            "error-container": "#ffdad6",
-            "on-secondary-fixed": "#25190e",
-            "on-error": "#ffffff",
-            "surface-container-high": "#eae8e5",
             "secondary-fixed": "#f6decb",
             "surface-container-highest": "#e5e2df",
-            "surface-container-lowest": "#ffffff",
             "on-background": "#1c1c1a",
-            "on-primary-container": "#8cc38f",
-            "tertiary-container": "#334e24",
-            "on-secondary-container": "#715f50",
             "primary-container": "#1e5128",
             "on-primary": "#ffffff",
             "surface-container": "#f0edea",
-            "surface-dim": "#dcdad7",
-            "on-tertiary-fixed": "#072100",
-            "on-tertiary-fixed-variant": "#324e24",
-            "inverse-primary": "#9cd49e",
-            "secondary-fixed-dim": "#d9c2b0",
-            "tertiary-fixed-dim": "#afd09a",
             "surface": "#fcf9f6",
-            "on-surface-variant": "#414940",
-            "on-secondary": "#ffffff",
             "background": "#fcf9f6",
             "on-surface": "#1c1c1a",
-            "on-secondary-fixed-variant": "#544436",
             "secondary": "#6d5b4c"
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
           },
           fontFamily: {
             "headline": ["Newsreader"],
@@ -79,11 +45,11 @@
     }
   </script>
   <style>
-    body { font-family: 'Manrope', sans-serif; }
-    .font-serif { font-family: 'Newsreader', serif; }
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
+    body { font-family: 'Manrope', sans-serif; }
+    h1, h2, h3 { font-family: 'Newsreader', serif; }
   </style>
 </head>
 
@@ -96,14 +62,14 @@
         <span class="text-xl md:text-2xl font-serif italic text-emerald-900 dark:text-emerald-100">Manupi</span>
       </a>
       
-      <div class="hidden md:flex items-center gap-8">
-        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-xs" href="index.html">Home</a>
-        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-xs" href="menu.html">Menu</a>
-        <a class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900 dark:border-emerald-400 pb-1 Manrope uppercase tracking-widest text-xs" href="location.html">Location</a>
+      <div class="hidden md:flex gap-8 items-center">
+        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors font-label uppercase tracking-widest text-xs" href="index.html">Home</a>
+        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors font-label uppercase tracking-widest text-xs" href="menu.html">Menu</a>
+        <a class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900 dark:border-emerald-400 pb-1 font-label uppercase tracking-widest text-xs" href="location.html">Location</a>
       </div>
 
       <div class="flex items-center gap-2 md:gap-4">
-        <button class="p-2 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300 rounded-full scale-95 relative z-50">
+        <button class="p-2 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300 rounded-full relative z-50">
           <span class="material-symbols-outlined">shopping_bag</span>
         </button>
         <button id="mobile-menu-btn" class="md:hidden p-2 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 transition-all rounded-full relative z-50 cursor-pointer">
@@ -121,7 +87,7 @@
     </div>
   </div>
 
-  <main class="max-w-7xl mx-auto px-6 md:px-8 pt-12 md:pt-20">
+  <main class="max-w-7xl mx-auto px-8 pt-12 md:pt-20">
     <header class="mb-16 md:mb-24">
       <span class="font-label uppercase tracking-widest text-xs text-primary mb-4 block">Visit Our Greenhouse</span>
       <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-primary leading-none">
@@ -199,12 +165,13 @@
           <span class="font-label uppercase tracking-widest text-xs text-stone-400">Navigation</span>
           <a class="text-emerald-800 dark:text-emerald-300 hover:underline transition-all text-sm" href="index.html">Home</a>
           <a class="text-emerald-800 dark:text-emerald-300 hover:underline transition-all text-sm" href="menu.html">Menu</a>
-          <a class="text-emerald-800 dark:text-emerald-300 font-bold hover:underline transition-all text-sm" href="location.html">Location</a>
+          <a class="text-emerald-800 dark:text-emerald-300 hover:underline transition-all text-sm font-bold" href="location.html">Location</a>
         </div>
         <div class="flex flex-col gap-4">
           <span class="font-label uppercase tracking-widest text-xs text-stone-400">Connect</span>
           <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Instagram</a>
           <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">WhatsApp</a>
+          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Email</a>
         </div>
         <div class="flex flex-col gap-4 col-span-2 sm:col-span-1">
           <span class="font-label uppercase tracking-widest text-xs text-stone-400">Visit</span>
