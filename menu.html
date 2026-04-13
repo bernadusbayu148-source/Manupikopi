@@ -19,55 +19,21 @@
             "on-tertiary": "#ffffff",
             "on-primary-fixed-variant": "#1e5128",
             "surface-container-low": "#f6f3f0",
-            "on-error-container": "#93000a",
             "surface-bright": "#fcf9f6",
-            "secondary-container": "#f4dbc9",
-            "on-primary-fixed": "#002108",
-            "inverse-on-surface": "#f3f0ed",
             "primary-fixed": "#b8f1b9",
             "surface-variant": "#e5e2df",
             "outline-variant": "#c1c9bd",
-            "primary-fixed-dim": "#9cd49e",
-            "on-tertiary-container": "#9ebf8a",
-            "tertiary": "#1d3710",
-            "error": "#ba1a1a",
-            "surface-tint": "#36693d",
-            "inverse-surface": "#31302f",
-            "outline": "#71796f",
             "primary": "#013a13",
-            "error-container": "#ffdad6",
-            "on-secondary-fixed": "#25190e",
-            "on-error": "#ffffff",
-            "surface-container-high": "#eae8e5",
             "secondary-fixed": "#f6decb",
             "surface-container-highest": "#e5e2df",
-            "surface-container-lowest": "#ffffff",
             "on-background": "#1c1c1a",
-            "on-primary-container": "#8cc38f",
-            "tertiary-container": "#334e24",
-            "on-secondary-container": "#715f50",
             "primary-container": "#1e5128",
             "on-primary": "#ffffff",
             "surface-container": "#f0edea",
-            "surface-dim": "#dcdad7",
-            "on-tertiary-fixed": "#072100",
-            "on-tertiary-fixed-variant": "#324e24",
-            "inverse-primary": "#9cd49e",
-            "secondary-fixed-dim": "#d9c2b0",
-            "tertiary-fixed-dim": "#afd09a",
             "surface": "#fcf9f6",
-            "on-surface-variant": "#414940",
-            "on-secondary": "#ffffff",
             "background": "#fcf9f6",
             "on-surface": "#1c1c1a",
-            "on-secondary-fixed-variant": "#544436",
             "secondary": "#6d5b4c"
-          },
-          borderRadius: {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
           },
           fontFamily: {
             "headline": ["Newsreader"],
@@ -94,18 +60,31 @@
       <a class="text-xl font-serif italic text-emerald-900 dark:text-emerald-100" href="index.html">
         <img alt="Manupi Logo" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhsXxeUU02h6HZwie_MnViGgZcANQ1f6viviAu6Nd1Oda3gancN8Krnm1Qo0SWx-gyTp9CzixgdTLdB9tyGCRR4AMfq4I2EgTiP8vglIus5A2PlKWmTzKoRM696XSYYF2uyMsngKavMQwtDHzLCJD8GoLqFjHdrc-bs260f9GFvNPue2dulGpKvLHggL6GlHKyg6ieO0QQ3CadnkibagrHrNwln_rGkobhBio-nBuXm0KX2r6MKaosbedmdEFgXz4vQHiQQT8UyHhg" />
       </a>
+      
       <nav class="hidden md:flex items-center gap-6">
         <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-[10px]" href="index.html">Home</a>
         <a class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900 dark:border-emerald-400 pb-0.5 Manrope uppercase tracking-widest text-[10px]" href="menu.html">Menu</a>
         <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors Manrope uppercase tracking-widest text-[10px]" href="location.html">Location</a>
       </nav>
+
       <div class="flex items-center gap-3">
         <button class="p-1.5 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/20 transition-all duration-300 rounded-full">
           <span class="material-symbols-outlined text-xl" data-icon="shopping_bag">shopping_bag</span>
         </button>
+        <button id="mobile-menu-btn" class="md:hidden p-1.5 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 transition-all rounded-full">
+          <span id="menu-icon" class="material-symbols-outlined text-xl" data-icon="menu">menu</span>
+        </button>
       </div>
     </div>
   </header>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-stone-50/95 dark:bg-stone-950/95 backdrop-blur-xl border-t border-stone-200 dark:border-stone-800 fixed w-full z-40 shadow-xl transition-all duration-300">
+    <div class="flex flex-col px-8 py-6 gap-6">
+      <a href="index.html" class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors border-b border-stone-200 dark:border-stone-800 pb-2 Manrope uppercase tracking-widest text-sm">Home</a>
+      <a href="menu.html" class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900/20 pb-2 Manrope uppercase tracking-widest text-sm">Menu</a>
+      <a href="location.html" class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors pb-2 Manrope uppercase tracking-widest text-sm">Location</a>
+    </div>
+  </div>
 
   <main class="max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
     <section class="mb-12 md:mb-16 text-center md:text-left flex flex-col md:flex-row items-center gap-6 md:gap-12">
@@ -156,105 +135,9 @@
           </div>
           <p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Rotating local single origin beans.</p>
         </div>
-        <div class="group">
-          <div class="aspect-square rounded-2xl overflow-hidden mb-3 bg-surface-container-low shadow-sm">
-            <img alt="Iced Dirty Chai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYNXC5PFUb_GwzdRWcNDId5RS3DXoDBEeqjVXLE2ku1RIHiGpJ2gBIzkqE8e5HeYnRf8k2lTWVsiuvCWMgbik2NMMGj5d8HTuVKIeotRBpqmwIacUXYhcI3LO3UgLstI7bFm4N5hHlEk8FFNCwZZVWxWeduiUhEn3F6T5qn6mx5EGSl-_xaYkdLucEO56bNcbMClXvEPLxsmdLv7pWrW6mvaIi33ybR_I38IF_mG6itO8X_AbUQORRnLbJUGv1HNpLMap7MbMmXhn1" />
-          </div>
-          <div class="flex justify-between items-baseline mb-1">
-            <h3 class="text-base md:text-lg font-serif text-on-surface leading-snug">Forest Dirty Chai</h3>
-            <span class="text-primary font-bold text-sm">45k</span>
-          </div>
-          <p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Spiced tea base with double ristretto.</p>
-        </div>
       </div>
     </div>
 
-    <div class="mb-16 py-8 px-6 md:py-12 md:px-12 rounded-[2.5rem] bg-surface-container-low relative overflow-hidden">
-      <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-        <h4 class="text-7xl font-serif italic text-primary">Manupi</h4>
-      </div>
-      <div class="relative z-10">
-        <div class="mb-8">
-          <h2 class="text-3xl md:text-4xl font-serif text-primary mb-1">Botanical Elixirs</h2>
-          <p class="font-label uppercase tracking-widest text-[10px] text-secondary">Refreshing Non-Coffee Options</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div class="space-y-6">
-            <div class="flex gap-4 group">
-              <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-surface">
-                <img alt="Matcha Latte" class="w-full h-full object-cover group-hover:scale-110 transition-duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKkQlt8orYiIO-uG5dZ_X0ukWOS8bmqZgtLRla7CApT-7moVupEL2WSYEoYfPjexduuQOVXW-LbIeqRUUmP7ML2YCDrI7NEAvQjuuKYRJhYD0SwZYdxObyH1grkjE1rinP2mE0P7OhSWAia52_LirlbWT_EvfUKm3aWsVw0M7m1TMTB5O2mgQ1Wg1wIvbA4TloKrhRh0meW3EwWyxKjs5KHzrS-eBG2O-Z4vK2xRwkavUstmhUUaJJfq_C1_tOVivcMnbZfGUoGY9Z" />
-              </div>
-              <div class="flex-1 border-b border-outline-variant/10 pb-2">
-                <div class="flex justify-between items-baseline mb-1">
-                  <h4 class="text-base font-serif">Ceremonial Matcha</h4>
-                  <span class="text-primary font-bold text-sm">48k</span>
-                </div>
-                <p class="text-xs text-on-surface-variant italic">Uji grade matcha & oat milk.</p>
-              </div>
-            </div>
-            <div class="flex gap-4 group">
-              <div class="flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden bg-surface">
-                <img alt="Hibiscus Tea" class="w-full h-full object-cover group-hover:scale-110 transition-duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBubau_5vVAG32aLiH6tCg7uyp4WY__EGNclCWdMZKItDaWSftbz35IXwNuLK94i0Q1i12BkjbfLLoSlCOMBLNdmzSwGPgBZVqwX5yITeMu8gsg5DIdzfhCp4geC4Q-dMgkBDcFzkH0-PsGak0CGK0r8d-Mtvqw9krfoohw4zUVmq3SnHyb17NPJw7SCUutDWQmGNoogjcx3rZYVJmOgudZzwgbk4yrIPVnVrCJphUhfVIRez1x22UeB56iz8qcbq_N3THknE86JlHe" />
-              </div>
-              <div class="flex-1 border-b border-outline-variant/10 pb-2">
-                <div class="flex justify-between items-baseline mb-1">
-                  <h4 class="text-base font-serif">Garden Hibiscus</h4>
-                  <span class="text-primary font-bold text-sm">35k</span>
-                </div>
-                <p class="text-xs text-on-surface-variant italic">Cold-brew with berries & soda.</p>
-              </div>
-            </div>
-          </div>
-          <div class="aspect-[16/9] md:aspect-[4/5] rounded-2xl md:rounded-[2rem] overflow-hidden shadow-lg">
-            <img alt="Botanical Drink" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0aeMKL2hEA7p-WRwkLGASeNRRsmkkjZWgN-JKHzLyV_2p-ma1Ta7xUyOO8kiMuFqCvvoeYmgop564PRni_MDy3Vo_AWuhmb1ZQBgUaupaLwcGqVa-4I5Q5qgvMILKUqKJJNmkrK5msWi3V0CgpmNvz9CT7auNy9GzE24tAeVFI96rPQEdOOLBmwQJnJrDc0MPqhiiVVDyPrad9PdQiRKgAdjmPAy_kDbjmDr2wf-qETmltAKz8OMbyvKmHKQPjkotYWo9eScX9Gm" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mb-12">
-      <div class="flex flex-row justify-between items-center gap-4 mb-8">
-        <h2 class="text-3xl md:text-4xl font-serif text-primary">Snacks</h2>
-        <div class="h-px flex-1 bg-outline-variant/30"></div>
-        <span class="font-label uppercase tracking-widest text-[10px] text-secondary hidden sm:inline">Sweet & Savoury</span>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:h-[450px]">
-        <div class="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[180px] md:h-auto">
-          <img alt="Truffle Fries" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFNCK79DN-W3_k6nYz6hs2jAa5u1QUwyJhMbuIGN_efBHE8DMhbqFFP-Sn6SzbbLcYyZPExQY7LWNu0qUm2sucdGZc72h_NMXbzq97gB0B-QijYHEOLhsgwoyK9Ud15yX8LZdwgsYxj2Z2wyHECPXuCPzZjvZAj2oIbiJFZLaf6r6nO8ORHRzYcAACWDjmERTTRCKhXkVTJ3_0HRPG9QfU_1FFA6HZWnOnFlhZ0D0cUHJTI2ReA-3pqEyUZ-jS8d7gI6A9CqIMQaNU" />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
-          <div class="absolute bottom-0 left-0 p-4 md:p-6 text-white">
-            <h4 class="text-xl md:text-2xl font-serif mb-1 leading-tight">Truffle Parm Fries</h4>
-            <div class="flex items-center gap-3">
-              <span class="text-[10px] uppercase tracking-widest bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full">35k</span>
-            </div>
-          </div>
-        </div>
-        <div class="md:col-span-2 group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[120px] md:h-auto">
-          <img alt="Sourdough" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4IwbU7ZnuFl5ODRZdzc0yWR5JMhB7jHcgezxFw7agi4fzCoS-4-P3NJsJpRHK2AMz__i4qcWaxZaK1hkfWIbV-fSdas8GEv5q4j1otX0YS2sq8PORNdbceJszXaQslClk-65BzJOooL2oKvojVE0OFmQAH270vC-naUF0QNfqC7ZDSHEy6ljVgzRJKU8vcwhBW5Xi2K7LuU-7iHdkAGnhQcbw1FWfaTFr-VCsWWE8Dj4dd-ShN6fV3kRxsxmeE7SpJ6ovRoAoDjDi" />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
-          <div class="absolute bottom-0 left-0 p-4 text-white">
-            <h4 class="text-lg font-serif mb-0.5">Avocado Toast</h4>
-            <span class="text-[10px] opacity-80">55k</span>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[120px] md:h-auto">
-          <img alt="Croissant" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClQNBzA1TGyfGgcI1sSWK1Fs0PAzxiE3aI34VJigXXcnTwRgs5umwOpMcix8KTK0JFZs4X-Q3do_mzgKc4O_nc-5ZO3FgUYbuDe9yxk3j1uMhmseZmGw4y_NYWQwXdV16mhuclrPKO86gDEEPWCFEZon_ozzxZaiUXTZU2wgjyjr9lUKGDzWtxLcdkACJU4ZaKwVhxuw9iQTMNBlI_gT5XjWZeIPq175AgYt9BAMTUptffkwjnWuAuxW9doLXTee3VLVnuS4BVZI83" />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
-          <div class="absolute bottom-0 left-0 p-4 text-white">
-            <h4 class="text-base font-serif">Almond Croissant</h4>
-            <span class="text-[10px] opacity-80">28k</span>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl md:rounded-[1.5rem] bg-surface-container h-[120px] md:h-auto">
-          <img alt="Dessert" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD60P4sIyEU1_QA0kp73L1_I9vJKtAJHX4hLOiZCWO7lqNl8mGBumlQua4oIuIeCtT5Z64vmgvce-_rCKKUNqNOGyBzmB4R4pBBEbj4OpftlMwH5dX5MZCdMFL48JDAaVfVt-yE4M6zgqxM2cP75tyfnTMuVlrcqVl60jHMJPGcCR00PTGA2PlWWStiv3qgYeOOH4TAgGgMQYta2jFWxDDg6dPh5IYzrSnnpenz8PbDfjyqgdKvKmasQbUZcG24XSOzv-DRw-ub36vI" />
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent opacity-60"></div>
-          <div class="absolute bottom-0 left-0 p-4 text-white">
-            <h4 class="text-base font-serif">Choco Lava</h4>
-            <span class="text-[10px] opacity-80">42k</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </main>
 
   <footer class="bg-stone-100 dark:bg-stone-900 w-full rounded-t-3xl mt-12">
@@ -274,21 +157,6 @@
           <a class="text-emerald-800 dark:text-emerald-300 font-bold hover:underline transition-all text-sm" href="menu.html">Menu</a>
           <a class="text-emerald-800 dark:text-emerald-300 hover:underline transition-all text-sm" href="location.html">Location</a>
         </div>
-        <div class="flex flex-col gap-4">
-          <span class="font-label uppercase tracking-widest text-xs text-stone-400">Connect</span>
-          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Instagram</a>
-          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">WhatsApp</a>
-          <a class="text-stone-600 dark:text-stone-400 hover:underline transition-all text-sm" href="#">Email</a>
-        </div>
-        <div class="flex flex-col gap-4 col-span-2 sm:col-span-1">
-          <span class="font-label uppercase tracking-widest text-xs text-stone-400">Visit</span>
-          <a class="bg-stone-200/50 dark:bg-stone-800/50 p-4 rounded-xl block hover:bg-stone-300/50 dark:hover:bg-stone-700/50 transition-colors" href="location.html">
-            <h5 class="font-serif text-emerald-900 dark:text-emerald-100 text-sm mb-1">The Greenhouse</h5>
-            <p class="text-xs text-stone-600 dark:text-stone-400 font-body">
-              Jl. Pangeran Samudera, No. 88<br />Banjarbaru, South Kalimantan
-            </p>
-          </a>
-        </div>
       </div>
     </div>
   </footer>
@@ -299,5 +167,19 @@
     </button>
   </div>
 
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      if (menu.classList.contains('hidden')) {
+        icon.textContent = 'menu';
+      } else {
+        icon.textContent = 'close';
+      }
+    });
+  </script>
 </body>
 </html>
