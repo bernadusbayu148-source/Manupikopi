@@ -1,54 +1,49 @@
 <!DOCTYPE html>
-<html class="light" lang="id">
+<html class="light" lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Menu | Manupi Coffee Shop</title>
-  
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <style>
     body { font-family: 'Manrope', sans-serif; }
     .font-serif { font-family: 'Newsreader', serif; }
   </style>
 </head>
-<body class="bg-stone-50 text-stone-900 antialiased">
-
-  <nav class="bg-stone-50/80 backdrop-blur-xl top-0 sticky z-50">
-    <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
-      <a href="index.html" class="flex items-center gap-3">
-        <img alt="Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhsXxeUU02h6HZwie_MnViGgZcANQ1f6viviAu6Nd1Oda3gancN8Krnm1Qo0SWx-gyTp9CzixgdTLdB9tyGCRR4AMfq4I2EgTiP8vglIus5A2PlKWmTzKoRM696XSYYF2uyMsngKavMQwtDHzLCJD8GoLqFjHdrc-bs260f9GFvNPue2dulGpKvLHggL6GlHKyg6ieO0QQ3CadnkibagrHrNwln_rGkobhBio-nBuXm0KX2r6MKaosbedmdEFgXz4vQHiQQT8UyHhg" />
-        <span class="text-xl font-serif italic text-emerald-900">Manupi</span>
+<body class="bg-background text-on-background">
+  <header class="bg-stone-50/80 dark:bg-stone-950/80 backdrop-blur-xl docked full-width top-0 sticky z-50">
+    <div class="flex justify-between items-center w-full px-6 md:px-8 py-4 max-w-7xl mx-auto">
+      <a class="text-xl font-serif italic text-emerald-900 dark:text-emerald-100" href="index.html">
+        <img alt="Manupi Logo" class="h-9 md:h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhsXxeUU02h6HZwie_MnViGgZcANQ1f6viviAu6Nd1Oda3gancN8Krnm1Qo0SWx-gyTp9CzixgdTLdB9tyGCRR4AMfq4I2EgTiP8vglIus5A2PlKWmTzKoRM696XSYYF2uyMsngKavMQwtDHzLCJD8GoLqFjHdrc-bs260f9GFvNPue2dulGpKvLHggL6GlHKyg6ieO0QQ3CadnkibagrHrNwln_rGkobhBio-nBuXm0KX2r6MKaosbedmdEFgXz4vQHiQQT8UyHhg" />
       </a>
-      <div class="hidden md:flex gap-8">
-        <a class="text-stone-500 hover:text-emerald-900 text-xs uppercase tracking-widest" href="index.html">Home</a>
-        <a class="text-emerald-900 font-bold border-b-2 border-emerald-900 pb-1 text-xs uppercase tracking-widest" href="menu.html">Menu</a>
-        <a class="text-stone-500 hover:text-emerald-900 text-xs uppercase tracking-widest" href="location.html">Location</a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors uppercase tracking-widest text-xs" href="index.html">Home</a>
+        <a class="text-emerald-900 dark:text-emerald-400 font-bold border-b border-emerald-900 pb-0.5 uppercase tracking-widest text-xs" href="menu.html">Menu</a>
+        <a class="text-stone-500 dark:text-stone-400 hover:text-emerald-800 transition-colors uppercase tracking-widest text-xs" href="location.html">Location</a>
+      </nav>
+      <div class="flex items-center gap-2 md:gap-4">
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-emerald-900 dark:text-emerald-500 hover:bg-emerald-50/50 transition-all rounded-full cursor-pointer">
+          <span id="menu-icon" class="material-symbols-outlined text-xl">menu</span>
+        </button>
       </div>
     </div>
-  </nav>
-
-  <main class="max-w-7xl mx-auto px-6 py-12">
-    <h2 class="text-4xl font-serif italic mb-12">Our Signature Selection</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white p-4 rounded-2xl shadow-sm border border-stone-100">
-        <img src="https://images.unsplash.com/photo-1541167760496-162955ed8a9f?w=800" class="w-full h-48 object-cover rounded-xl mb-4" />
-        <h4 class="font-bold text-lg">Signature Iced Coffee</h4>
-        <p class="text-stone-500 text-sm mb-4">Perpaduan espresso spesial dengan susu segar.</p>
-        <span class="font-serif italic text-emerald-900">IDR 28.000</span>
-      </div>
-    </div>
-  </main>
-
+  </header>
+  <main class="max-w-7xl mx-auto px-4 py-12">
+    </main>
   <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 border-t border-stone-100 z-50 h-20">
     <div class="grid grid-cols-3 h-full">
-      <a href="index.html" class="flex flex-col items-center justify-center text-stone-400"><span class="material-symbols-outlined">home</span><span class="text-[10px] mt-1">Home</span></a>
-      <a href="menu.html" class="flex flex-col items-center justify-center text-emerald-900"><span class="material-symbols-outlined">menu_book</span><span class="text-[10px] mt-1 font-bold">Menu</span></a>
-      <a href="location.html" class="flex flex-col items-center justify-center text-stone-400"><span class="material-symbols-outlined">location_on</span><span class="text-[10px] mt-1">Location</span></a>
+      <a href="index.html" class="flex flex-col items-center justify-center text-stone-400">
+        <span class="material-symbols-outlined">home</span><span class="text-[10px] mt-1">Home</span>
+      </a>
+      <a href="menu.html" class="flex flex-col items-center justify-center text-emerald-900">
+        <span class="material-symbols-outlined">menu_book</span><span class="text-[10px] mt-1 font-bold">Menu</span>
+      </a>
+      <a href="location.html" class="flex flex-col items-center justify-center text-stone-400">
+        <span class="material-symbols-outlined">location_on</span><span class="text-[10px] mt-1">Location</span>
+      </a>
     </div>
   </div>
-
 </body>
 </html>
