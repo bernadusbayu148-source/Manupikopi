@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Kopi Feeling</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #4CAF50; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        select, input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        .order-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; background: #f9f9f9; padding: 10px; border-radius: 4px; }
+        .order-row select { flex: 2; }
+        .order-row input[type="number"] { flex: 1; padding: 10px; }
+        button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        .btn-add { background-color: #2196F3; color: white; margin-bottom: 15px; }
+        .btn-remove { background-color: #f44336; color: white; padding: 10px; }
+        .btn-submit { background-color: #4CAF50; color: white; width: 100%; font-size: 16px; padding: 12px; margin-top: 20px; }
+        .total-box { font-size: 20px; font-weight: bold; text-align: right; margin: 20px 0; padding: 10px; background: #e8f5e9; border-radius: 4px; }
+        .payment-methods { display: flex; gap: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Kasir Kopi Feeling</h2>
+    
+    <div class="form-group">
+        <label>Station Gerobak</label>
+        <select id="station">
+            <option value="Station Sudirman">Station Sudirman</option>
+            <option value="Station Kemang">Station Kemang</option>
+            <option value="Station Blok M">Station Blok M</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Shift</label>
+        <select id="shift">
+            <option value="Shift 1">Shift 1 (Pagi - Sore)</option>
+            <option value="Shift 2">Shift 2 (Sore - Malam)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Nama Pilot Gerobak</label>
+        <input type="text" id="pilot" placeholder="Masukkan nama pilot..." required>
+    </div>
+
+    <hr>
+    <h3>Menu Pesanan</h3>
+    <div id="order-container">
+        <!-- Baris pesanan akan muncul di sini -->
+    </div>
+    
+    <button class="btn-add" onclick="addOrderRow()">+ Tambah Menu</button>
+
+    <div class="total-box">
+        Total: Rp <span id="total-price">0</span>
+    </div>
+
+    <div class="form-group">
+        <label>Metode Pembayaran</label>
+        <div class="payment-methods">
+            <label><input type="radio" name="pembayaran" value="Cash" checked> Cash</label>
+            <label><input type="radio" name="pembayaran" value="QRIS"> QRIS</label>
+        </div>
+    </div>
+
+    <button class="btn-submit" onclick="submitData()">Kirim Transaksi</button>
+</div>
+
+<script>
+    // URL Web App Google Apps Script Anda (GANTI DENGAN URL YANG ANDA SALIN DI LANGKAH 1)
+    const scriptURL = const scriptURL = 'https://script.google.com/macros/s/AKfycbzfB_fAcmumMfhfk2xBXelHiSYAoM52QArOUARESYD4_g5YFsCKcndPmyx68dIMSlNC/exec';
+
+    // Daftar Menu & Harga (Bisa dimodifikasi sesuai kebutuhan)
+    const menuItems = {
+        "Kopi Susu Feeling": 18000,
+        "Americano": 15000,
+        "Latte": 20000,
+        "Matcha": 22000,
+        "Cokelat": 20000
+    };
+
+    function addOrderRow() {
+        const container = document.getElementById('order-container');
+        const row = document.createElement('div');
+        row.className = 'order-row';
+
+        // Dropdown Menu
+        let selectHTML = `<select class="menu-select" onchange="calculateTotal()">
+            <option value="" disabled selected>Pilih Menu</option>`;
+        for (let item in menuItems) {
+            selectHTML += `<option value="${item}">${item} - Rp ${menuItems[item].toLocaleString('id-ID')}</option>`;
+        }
+        selectHTML += `</select>`;
+
+        // Input Jumlah
+        const inputQty = `<input type="number" class="qty-input" min="1" value="1" onchange="calculateTotal()">`;
+        
+        // Tombol Hapus
+        const removeBtn = `<button class="btn-remove" onclick="removeRow(this)">X</button>`;
+
+        row.innerHTML = selectHTML + inputQty + removeBtn;
+        container.appendChild(row);
+    }
+
+    function removeRow(btn) {
+        btn.parentElement.remove();
+        calculateTotal();
+    }
+
+    function calculateTotal() {
+        const rows = document.querySelectorAll('.order-row');
+        let total = 0;
+
+        rows.forEach(row => {
+            const menuName = row.querySelector('.menu-select').value;
+            const qty = parseInt(row.querySelector('.qty-input').value) || 0;
+            
+            if (menuName && menuItems[menuName]) {
+                total += menuItems[menuName] * qty;
+            }
+        });
+
+        document.getElementById('total-price').innerText = total.toLocaleString('id-ID');
+        return total;
+    }
+
+    function submitData() {
+        const station = document.getElementById('station').value;
+        const shift = document.getElementById('shift').value;
+        const pilot = document.getElementById('pilot').value;
+        const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
+        const total = calculateTotal();
+
+        if (!pilot) {
+            alert("Nama Pilot Gerobak harus diisi!");
+            return;
+        }
+        if (total === 0) {
+            alert("Belum ada menu yang dipilih!");
+            return;
+        }
+
+        // Kumpulkan data pesanan
+        const pesanan = [];
+        document.querySelectorAll('.order-row').forEach(row => {
+            const menu = row.querySelector('.menu-select').value;
+            const jumlah = parseInt(row.querySelector('.qty-input').value);
+            if (menu && jumlah > 0) {
+                pesanan.push({ menu: menu, jumlah: jumlah });
+            }
+        });
+
+        const payload = {
+            station: station,
+            shift: shift,
+            pilot: pilot,
+            pesanan: pesanan,
+            total: total,
+            pembayaran: pembayaran
+        };
+
+        // Ganti tombol menjadi loading
+        const btnSubmit = document.querySelector('.btn-submit');
+        btnSubmit.innerText = "Mengirim...";
+        btnSubmit.disabled = true;
+
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.status === 'sukses'){
+                alert("Transaksi berhasil dicatat ke Spreadsheet!");
+                // Reset form
+                document.getElementById('pilot').value = '';
+                document.getElementById('order-container').innerHTML = '';
+                addOrderRow(); // Beri 1 baris kosong lagi
+                calculateTotal();
+            } else {
+                alert("Terjadi kesalahan: " + data.pesan);
+            }
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert("Gagal menghubungi server.");
+        })
+        .finally(() => {
+            btnSubmit.innerText = "Kirim Transaksi";
+            btnSubmit.disabled = false;
+        });
+    }
+
+    // Inisialisasi 1 baris pesanan saat halaman pertama dimuat
+    window.onload = function() {
+        addOrderRow();
+    };
+</script>
+
+</body>
+</html>
