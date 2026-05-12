@@ -5,19 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kasir Kopi Feeling</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333; }
+        /* Gaya Global */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; padding: 20px; color: #333; margin: 0; }
         .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #4CAF50; }
+        h2 { text-align: center; color: #b71c1c; }
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: bold; }
         select, input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        .order-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; background: #f9f9f9; padding: 10px; border-radius: 4px; }
-        .order-row select { flex: 2; }
-        .order-row input[type="number"] { flex: 1; padding: 10px; }
-        button { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        .btn-add { background-color: #2196F3; color: white; margin-bottom: 15px; }
-        .btn-remove { background-color: #f44336; color: white; padding: 10px; }
-        .btn-submit { background-color: #4CAF50; color: white; width: 100%; font-size: 16px; padding: 12px; margin-top: 20px; }
+        
+        /* Area Pesanan Merah */
+        .order-area { background-color: #b71c1c; padding: 20px; border-radius: 8px; margin-top: 20px; color: white; position: relative; }
+        .order-area h3 { margin-top: 0; margin-bottom: 20px; font-weight: normal; }
+        .order-row-container { margin-bottom: 15px; }
+        .order-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; background: white; padding: 15px; border-radius: 20px; position: relative; }
+        .order-row .order-item { flex: 1; position: relative; }
+        .order-row label { color: white; font-weight: normal; margin-bottom: 2px; }
+        .order-item label { color: white; display: block; margin-bottom: 5px; font-weight: normal; }
+
+        /* Input Menu Kustom */
+        .menu-select-custom { background: white; border: none; border-radius: 15px; padding: 12px; cursor: pointer; color: #333; display: flex; justify-content: space-between; align-items: center; text-decoration: none; box-sizing: border-box; width: 100%; }
+        .menu-select-custom span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .menu-select-custom span.menu-name { flex: 1; }
+        .menu-select-custom span.status { color: #999; font-size: 0.9em; margin-left: 10px; text-align: right;}
+        
+        /* Input Qty */
+        .qty-input { width: 100%; padding: 12px; border: none; border-radius: 15px; background: white; color: #333; text-align: left; -moz-appearance: textfield; box-sizing: border-box; }
+        .qty-input::-webkit-outer-spin-button, .qty-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        
+        /* Tombol Hapus & Tambah */
+        .btn-remove-container { display: flex; align-items: center; }
+        .btn-remove { background-color: white; color: #03a9f4; border: 1px solid #03a9f4; border-radius: 10px; padding: 5px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-size: 1.2em; font-weight: bold; cursor: pointer; }
+        .btn-add { background-color: #b71c1c; color: white; border: 1px solid white; border-radius: 20px; cursor: pointer; padding: 10px 20px; font-size: 1em; }
+        .add-menu-container { display: flex; justify-content: start; margin-top: 15px; }
+        
+        /* Modal Pilih Menu */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
+        .modal-content { background-color: white; margin: 5% auto; padding: 25px; border: none; width: 85%; max-width: 500px; border-radius: 20px; position: relative; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h4 { margin: 0; font-size: 1.2em; }
+        .close-modal { color: #999; font-size: 1.5em; font-weight: bold; cursor: pointer; background: white; border: 1px solid #999; border-radius: 10px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        .search-container { position: relative; margin-bottom: 15px; }
+        .search-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 15px; box-sizing: border-box; font-size: 1em; }
+        .search-input:focus { outline: none; border-color: #03a9f4; }
+        .menu-list-container { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; max-height: 300px; overflow-y: auto; }
+        .menu-item-tag { background-color: #eeeeee; color: #333; border: none; border-radius: 15px; padding: 8px 15px; cursor: pointer; font-size: 0.9em; }
+        .btn-cancel { background-color: white; color: #b71c1c; border: 1px solid #b71c1c; border-radius: 20px; cursor: pointer; padding: 10px 20px; font-size: 1em; width: 100%; }
+        
+        /* Lainnya */
+        .btn-submit { background-color: #4CAF50; color: white; width: 100%; font-size: 16px; padding: 12px; margin-top: 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
         .total-box { font-size: 20px; font-weight: bold; text-align: right; margin: 20px 0; padding: 10px; background: #e8f5e9; border-radius: 4px; }
         .payment-methods { display: flex; gap: 20px; }
     </style>
@@ -49,13 +84,14 @@
         <input type="text" id="pilot" placeholder="Masukkan nama pilot..." required>
     </div>
 
-    <hr>
-    <h3>Menu Pesanan</h3>
-    <div id="order-container">
-        <!-- Baris pesanan akan muncul di sini -->
+    <div class="order-area">
+        <h3>Detail Pesanan</h3>
+        <div id="order-row-container">
+            </div>
+        <div class="add-menu-container">
+            <button class="btn-add" onclick="addOrderRow()">+ Tambah Menu</button>
+        </div>
     </div>
-    
-    <button class="btn-add" onclick="addOrderRow()">+ Tambah Menu</button>
 
     <div class="total-box">
         Total: Rp <span id="total-price">0</span>
@@ -72,45 +108,120 @@
     <button class="btn-submit" onclick="submitData()">Kirim Transaksi</button>
 </div>
 
-<script>
-    // URL Web App Google Apps Script Anda (GANTI DENGAN URL YANG ANDA SALIN DI LANGKAH 1)
-    const scriptURL = const scriptURL = 'https://script.google.com/macros/s/AKfycbzfB_fAcmumMfhfk2xBXelHiSYAoM52QArOUARESYD4_g5YFsCKcndPmyx68dIMSlNC/exec';
+<div id="menu-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Pilih Menu</h4>
+            <span class="close-modal" onclick="closeMenuModal()">×</span>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-menu" class="search-input" placeholder="Cari menu..." onkeyup="filterMenuList()">
+        </div>
+        <div id="menu-list" class="menu-list-container">
+            </div>
+        <button class="btn-cancel" onclick="closeMenuModal()">Batal</button>
+    </div>
+</div>
 
-    // Daftar Menu & Harga (Bisa dimodifikasi sesuai kebutuhan)
+<script>
+    // URL Web App Google Apps Script Anda (GANTI DENGAN URL ANDA)
+    const scriptURL = '';
+
+    // Daftar Menu & Harga (Dari Gambar 3, dengan harga simulasi)
     const menuItems = {
-        "Kopi Susu Feeling": 18000,
-        "Americano": 15000,
-        "Latte": 20000,
-        "Matcha": 22000,
-        "Cokelat": 20000
+        "Be Carefeels": 18000,
+        "Our Feeling": 15000,
+        "Happy Feels": 20000,
+        "Mocafeels": 22000,
+        "Rushfeels": 20000,
+        "Vanfeels": 18000,
+        "Nutfeels": 20000,
+        "Blackfeels": 15000,
+        "Chocofeels": 20000,
+        "Greenfeels": 22000,
+        "Red Deveels": 25000
     };
 
+    let currentRowId = null;
+
     function addOrderRow() {
-        const container = document.getElementById('order-container');
-        const row = document.createElement('div');
-        row.className = 'order-row';
-
-        // Dropdown Menu
-        let selectHTML = `<select class="menu-select" onchange="calculateTotal()">
-            <option value="" disabled selected>Pilih Menu</option>`;
-        for (let item in menuItems) {
-            selectHTML += `<option value="${item}">${item} - Rp ${menuItems[item].toLocaleString('id-ID')}</option>`;
-        }
-        selectHTML += `</select>`;
-
-        // Input Jumlah
-        const inputQty = `<input type="number" class="qty-input" min="1" value="1" onchange="calculateTotal()">`;
-        
-        // Tombol Hapus
-        const removeBtn = `<button class="btn-remove" onclick="removeRow(this)">X</button>`;
-
-        row.innerHTML = selectHTML + inputQty + removeBtn;
-        container.appendChild(row);
+        const container = document.getElementById('order-row-container');
+        const rowId = 'row-' + Date.now();
+        const rowHTML = `
+            <div class="order-row" id="${rowId}">
+                <div class="order-item">
+                    <label>Menu</label>
+                    <a href="javascript:void(0)" class="menu-select-custom" onclick="openMenuModal('${rowId}')">
+                        <span class="menu-name">Pilih Menu</span>
+                        <span class="status">Belum dipilih</span>
+                    </a>
+                </div>
+                <div class="order-item" style="max-width: 80px;">
+                    <label>Qty</label>
+                    <input type="number" class="qty-input" min="1" placeholder="Qty" oninput="calculateTotal()">
+                </div>
+                <div class="btn-remove-container">
+                    <button class="btn-remove" onclick="removeRow('${rowId}')">×</button>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', rowHTML);
     }
 
-    function removeRow(btn) {
-        btn.parentElement.remove();
+    function removeRow(rowId) {
+        document.getElementById(rowId).remove();
         calculateTotal();
+    }
+
+    // Modal Pilih Menu
+    function openMenuModal(rowId) {
+        currentRowId = rowId;
+        document.getElementById('menu-modal').style.display = 'block';
+        document.getElementById('search-menu').focus();
+        renderMenuList();
+    }
+
+    function closeMenuModal() {
+        document.getElementById('menu-modal').style.display = 'none';
+        document.getElementById('search-menu').value = '';
+    }
+
+    function renderMenuList() {
+        const menuList = document.getElementById('menu-list');
+        menuList.innerHTML = '';
+        for (let item in menuItems) {
+            const tag = document.createElement('button');
+            tag.className = 'menu-item-tag';
+            tag.innerText = item;
+            tag.onclick = function() { selectMenuItem(item); };
+            menuList.appendChild(tag);
+        }
+    }
+
+    function filterMenuList() {
+        const input = document.getElementById('search-menu');
+        const filter = input.value.toLowerCase();
+        const tags = document.getElementsByClassName('menu-item-tag');
+        for (let i = 0; i < tags.length; i++) {
+            const txtValue = tags[i].textContent || tags[i].innerText;
+            if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                tags[i].style.display = "";
+            } else {
+                tags[i].style.display = "none";
+            }
+        }
+    }
+
+    function selectMenuItem(menuName) {
+        if (currentRowId) {
+            const row = document.getElementById(currentRowId);
+            const menuNameSpan = row.querySelector('.menu-name');
+            const statusSpan = row.querySelector('.status');
+            menuNameSpan.innerText = menuName;
+            statusSpan.style.display = 'none'; // Sembunyikan "Belum dipilih"
+            closeMenuModal();
+            calculateTotal();
+        }
     }
 
     function calculateTotal() {
@@ -118,10 +229,11 @@
         let total = 0;
 
         rows.forEach(row => {
-            const menuName = row.querySelector('.menu-select').value;
-            const qty = parseInt(row.querySelector('.qty-input').value) || 0;
+            const menuName = row.querySelector('.menu-name').innerText;
+            const qtyInput = row.querySelector('.qty-input');
+            const qty = parseInt(qtyInput.value) || 0;
             
-            if (menuName && menuItems[menuName]) {
+            if (menuName !== "Pilih Menu" && menuItems[menuName]) {
                 total += menuItems[menuName] * qty;
             }
         });
@@ -137,73 +249,52 @@
         const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
         const total = calculateTotal();
 
-        if (!pilot) {
-            alert("Nama Pilot Gerobak harus diisi!");
-            return;
-        }
-        if (total === 0) {
-            alert("Belum ada menu yang dipilih!");
-            return;
-        }
+        if (!pilot) { alert("Nama Pilot Gerobak harus diisi!"); return; }
+        if (total === 0) { alert("Belum ada menu yang dipilih!"); return; }
 
-        // Kumpulkan data pesanan
         const pesanan = [];
+        let missingMenu = false;
         document.querySelectorAll('.order-row').forEach(row => {
-            const menu = row.querySelector('.menu-select').value;
-            const jumlah = parseInt(row.querySelector('.qty-input').value);
-            if (menu && jumlah > 0) {
-                pesanan.push({ menu: menu, jumlah: jumlah });
-            }
+            const menu = row.querySelector('.menu-name').innerText;
+            const qty = parseInt(row.querySelector('.qty-input').value) || 0;
+            if (menu === "Pilih Menu") { missingMenu = true; }
+            if (menu !== "Pilih Menu" && qty > 0) { pesanan.push({ menu: menu, jumlah: qty }); }
         });
 
-        const payload = {
-            station: station,
-            shift: shift,
-            pilot: pilot,
-            pesanan: pesanan,
-            total: total,
-            pembayaran: pembayaran
-        };
+        if (missingMenu) { alert("Pastikan semua menu sudah dipilih!"); return; }
 
-        // Ganti tombol menjadi loading
+        const payload = { station: station, shift: shift, pilot: pilot, pesanan: pesanan, total: total, pembayaran: pembayaran };
         const btnSubmit = document.querySelector('.btn-submit');
         btnSubmit.innerText = "Mengirim...";
         btnSubmit.disabled = true;
 
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
-            }
-        })
+        fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload), headers: { 'Content-Type': 'text/plain;charset=utf-8', } })
         .then(response => response.json())
         .then(data => {
             if(data.status === 'sukses'){
-                alert("Transaksi berhasil dicatat ke Spreadsheet!");
-                // Reset form
+                alert("Transaksi berhasil dicatat!");
                 document.getElementById('pilot').value = '';
-                document.getElementById('order-container').innerHTML = '';
-                addOrderRow(); // Beri 1 baris kosong lagi
+                document.getElementById('order-row-container').innerHTML = '';
+                addOrderRow();
                 calculateTotal();
-            } else {
-                alert("Terjadi kesalahan: " + data.pesan);
-            }
+            } else { alert("Terjadi kesalahan: " + data.pesan); }
         })
-        .catch(error => {
-            console.error('Error!', error.message);
-            alert("Gagal menghubungi server.");
-        })
-        .finally(() => {
-            btnSubmit.innerText = "Kirim Transaksi";
-            btnSubmit.disabled = false;
-        });
+        .catch(error => { alert("Gagal menghubungi server."); console.error('Error!', error.message); })
+        .finally(() => { btnSubmit.innerText = "Kirim Transaksi"; btnSubmit.disabled = false; });
     }
 
-    // Inisialisasi 1 baris pesanan saat halaman pertama dimuat
+    // Inisialisasi
     window.onload = function() {
         addOrderRow();
+        renderMenuList();
     };
+    
+    // Tutup modal jika klik di luar modal
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('menu-modal')) {
+            closeMenuModal();
+        }
+    }
 </script>
 
 </body>
