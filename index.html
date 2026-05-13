@@ -46,11 +46,31 @@
         #cash-section { background: #e3f2fd; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #bbdefb; }
         .change-box { font-size: 1.2rem; font-weight: bold; margin-top: 10px; text-align: right; }
 
-        /* Area Tampil QRIS */
+        /* Area Tampil QRIS Kecil */
         #qris-section { background: #fff; padding: 15px; border-radius: 8px; margin-top: 15px; border: 2px dashed #b71c1c; text-align: center; display: none; }
-        .qris-img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        /* Kursor diubah jadi pointer (gambar tangan) agar pilot tahu bisa diklik */
+        .qris-img { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s;}
+        .qris-img:active { transform: scale(0.95); }
         .qris-instruction { font-size: 1.1rem; margin-bottom: 10px; color: #333; }
         .qris-amount-alert { font-size: 1.3rem; font-weight: bold; color: #b71c1c; background: #ffebee; padding: 10px; border-radius: 8px; display: inline-block;}
+
+        /* OVERLAY QRIS FULLSCREEN (BARU) */
+        #qris-fullscreen-overlay {
+            display: none; /* Disembunyikan secara default */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: white; /* Latar putih solid agar kontras */
+            z-index: 9999; /* Berada paling atas menutupi semua */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            cursor: pointer; /* Bisa diklik di mana saja untuk tutup */
+        }
+        .qris-fullscreen-img { width: 100%; max-width: 400px; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 30px; }
+        .qris-fullscreen-amount { font-size: 2.5rem; font-weight: bold; color: #b71c1c; background: #ffebee; padding: 15px 30px; border-radius: 15px; text-align: center;}
+        .qris-fullscreen-hint { color: #888; margin-top: 20px; font-size: 0.9rem; }
 
         .btn-submit { background-color: #4CAF50; color: white; width: 100%; font-size: 1.2rem; padding: 15px; margin-top: 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-sizing: border-box; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
         .btn-submit:disabled { background-color: #a5d6a7; cursor: not-allowed; }
@@ -118,17 +138,25 @@
             </div>
         </div>
 
-        <!-- TAMPILAN GAMBAR QRIS (BARU) -->
+        <!-- TAMPILAN GAMBAR QRIS -->
         <div id="qris-section">
-            <div class="qris-instruction">Silakan arahkan kamera ke QRIS berikut:</div>
-            <!-- MENGAMBIL GAMBAR DARI FILE qris.jpg YANG ANDA UPLOAD -->
-            <img src="qris.jpeg" alt="QRIS Kopi Feeling" class="qris-img">
+            <div class="qris-instruction">Tap gambar QRIS untuk perbesar layarnya:</div>
+            <!-- Diberi onclick untuk membuka fullscreen -->
+            <img src="qris.jpeg" alt="QRIS Kopi Feeling" class="qris-img" onclick="openFullscreenQR()">
             <br>
             <div class="qris-amount-alert">Input Nominal: Rp <span id="qris-amount-text">0</span></div>
         </div>
     </div>
 
     <button class="btn-submit" onclick="submitData()">Kirim Transaksi</button>
+</div>
+
+<!-- OVERLAY QRIS FULLSCREEN (BARU) -->
+<!-- Diberi onclick agar jika ditekan di mana saja, layar kembali seperti semula -->
+<div id="qris-fullscreen-overlay" onclick="closeFullscreenQR()">
+    <div class="qris-fullscreen-amount">Rp <span id="qris-fullscreen-amount-text">0</span></div>
+    <img src="qris.jpg" alt="QRIS Besar" class="qris-fullscreen-img">
+    <div class="qris-fullscreen-hint">Sentuh layar di mana saja untuk kembali</div>
 </div>
 
 <script>
@@ -210,14 +238,11 @@
         summaryEmpty.style.display = hasOrder ? 'none' : 'block';
         
         document.getElementById('total-price').innerText = currentTotal.toLocaleString('id-ID');
-        
-        // Update angka nominal di kotak peringatan QRIS
         document.getElementById('qris-amount-text').innerText = currentTotal.toLocaleString('id-ID');
 
         calculateChange();
     }
 
-    // FUNGSI BARU: MENGATUR TAMPILAN TUNAI / QRIS
     function togglePaymentSection() {
         const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
         const cashSection = document.getElementById('cash-section');
@@ -227,10 +252,9 @@
             cashSection.style.display = 'block';
             qrisSection.style.display = 'none';
         } else {
-            // Jika pilih QRIS
             cashSection.style.display = 'none';
             qrisSection.style.display = 'block';
-            document.getElementById('cash-given').value = ''; // Kosongkan input uang tunai
+            document.getElementById('cash-given').value = ''; 
         }
         calculateChange();
     }
@@ -253,6 +277,24 @@
             changeAmountDisplay.innerText = "Rp 0";
             changeAmountDisplay.style.color = '#333';
         }
+    }
+
+    // FUNGSI BARU: BUKA LAYAR PENUH QRIS
+    function openFullscreenQR() {
+        if (currentTotal === 0) {
+            alert("Silakan pilih menu terlebih dahulu!");
+            return;
+        }
+        // Pastikan angka nominal di layar besar juga ikut diperbarui
+        document.getElementById('qris-fullscreen-amount-text').innerText = currentTotal.toLocaleString('id-ID');
+        
+        // Tampilkan overlay dengan display: flex
+        document.getElementById('qris-fullscreen-overlay').style.display = 'flex';
+    }
+
+    // FUNGSI BARU: TUTUP LAYAR PENUH QRIS
+    function closeFullscreenQR() {
+        document.getElementById('qris-fullscreen-overlay').style.display = 'none';
     }
 
     function submitData() {
@@ -300,7 +342,7 @@
 
     window.onload = function() {
         renderMenuGrid();
-        togglePaymentSection(); // Jalankan fungsi ini saat pertama kali dimuat
+        togglePaymentSection(); 
     };
 </script>
 
