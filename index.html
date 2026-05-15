@@ -110,10 +110,11 @@
         .qris-fullscreen-amount { font-size: 2.5rem; font-weight: bold; color: var(--primary-color); background: #ffebee; padding: 15px 30px; border-radius: 15px; text-align: center;}
         body.dark-mode .qris-fullscreen-amount { background: #3e2723; }
 
-        /* ================= TAMPILAN NOTA TRANSAKSI ================= */
+        /* TAMPILAN NOTA TRANSAKSI */
         #receipt-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; flex-direction: column; padding: 20px; box-sizing: border-box; cursor: pointer;}
         .receipt-card { background: #fff; color: #222; width: 100%; max-width: 320px; padding: 25px 20px; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; font-family: 'Courier New', Courier, monospace; position: relative;}
-        .receipt-header { font-weight: bold; font-size: 1.4rem; border-bottom: 2px dashed #444; padding-bottom: 10px; margin-bottom: 10px;}
+        /* Perubahan Gaya untuk Logo */
+        .receipt-logo { max-width: 150px; height: auto; margin-bottom: 10px; }
         .receipt-queue-title { font-size: 0.9rem; margin-top: 5px; }
         .receipt-queue-number { font-size: 3.5rem; font-weight: bold; margin: 0; color: #000; line-height: 1;}
         .receipt-items { text-align: left; margin: 15px 0; border-top: 2px dashed #444; border-bottom: 2px dashed #444; padding: 15px 0;}
@@ -207,7 +208,7 @@
 
 <div id="receipt-overlay" onclick="closeReceipt()">
     <div class="receipt-card" id="receipt-card">
-        </div>
+    </div>
     <div class="instruction-text">👆 Tap layar untuk pesanan baru 👆</div>
 </div>
 
@@ -424,10 +425,9 @@
 
     function closeFullscreenQR() { document.getElementById('qris-fullscreen-overlay').style.display = 'none'; }
 
-    // ================= FUNGSI NOTA DIGITAL =================
-    function showReceipt(pesanan, total, pembayaran) {
-        // Generate nomor antrean acak antara 100 - 999
-        const queueNum = Math.floor(Math.random() * 900) + 100;
+    // FUNGSI NOTA DIGITAL
+    // Perubahan parameter untuk menerima nomor urut dan shift
+    function showReceipt(pesanan, total, pembayaran, sequenceNumber, shift) {
         const receiptCard = document.getElementById('receipt-card');
         
         let itemsHtml = '';
@@ -439,18 +439,18 @@
             `;
         });
 
-        // Format waktu saat ini
         const now = new Date();
         const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 
         receiptCard.innerHTML = `
             <div class="receipt-header">
-                MANUPI KOPI<br>
+                <img src="image_10.png" alt="Logo Feeling" class="receipt-logo">
                 <span style="font-size:0.9rem; font-weight:normal;">${eventName}</span>
             </div>
             <div class="receipt-queue-title">No. Antrean:</div>
-            <div class="receipt-queue-number">${queueNum}</div>
+            <div class="receipt-queue-number">${sequenceNumber}</div>
             <div style="font-size:0.8rem; margin-bottom:10px; color:#555;">Waktu: ${timeStr}</div>
+            <div style="font-size:0.8rem; margin-bottom:10px; color:#555;">Shift: <strong>${shift}</strong></div>
             
             <div class="receipt-items">
                 ${itemsHtml}
@@ -468,22 +468,20 @@
             </div>
         `;
         
-        // Tampilkan overlay nota
         document.getElementById('receipt-overlay').style.display = 'flex';
     }
 
     function closeReceipt() {
-        // Sembunyikan overlay
         document.getElementById('receipt-overlay').style.display = 'none';
         
-        // Reset seluruh form agar siap untuk pelanggan berikutnya
         document.getElementById('cash-given').value = '';
+        // Reset dropdown shift ke default
+        document.getElementById('shift').value = "Shift 1";
         menus.forEach(m => m.qty = 0); 
         renderMenuGrid(); 
         updateOrderSummary(); 
     }
 
-    // ================= KIRIM DATA =================
     function submitData() {
         const shift = document.getElementById('shift').value;
         const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
@@ -517,8 +515,8 @@
         .then(response => response.json())
         .then(data => {
             if(data.status === 'sukses'){
-                // Tampilkan nota setelah data sukses masuk spreadsheet
-                showReceipt(pesanan, currentTotal, pembayaran);
+                // Tampilkan nota dengan nomor antrean yang benar dan shift
+                showReceipt(pesanan, currentTotal, pembayaran, data.sequenceNumber, shift);
             } else { alert("Terjadi kesalahan: " + data.pesan); }
         })
         .catch(error => { alert("Gagal menghubungi server."); console.error('Error!', error); })
