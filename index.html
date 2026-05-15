@@ -113,8 +113,31 @@
         /* TAMPILAN NOTA TRANSAKSI */
         #receipt-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; flex-direction: column; padding: 20px; box-sizing: border-box; cursor: pointer;}
         .receipt-card { background: #fff; color: #222; width: 100%; max-width: 320px; padding: 25px 20px; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; font-family: 'Courier New', Courier, monospace; position: relative;}
-        /* Perubahan Gaya untuk Logo */
-        .receipt-logo { max-width: 150px; height: auto; margin-bottom: 10px; }
+        
+        /* CSS YANG DIPERBAIKI UNTUK HEADER NOTA */
+        .receipt-header { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            border-bottom: 2px dashed #444; 
+            padding-bottom: 10px; 
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .receipt-logo { 
+            width: 140px; /* Ukuran logo di nota */
+            height: auto; 
+            margin-bottom: 8px; 
+            display: block;
+        }
+        .receipt-event-name {
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+
         .receipt-queue-title { font-size: 0.9rem; margin-top: 5px; }
         .receipt-queue-number { font-size: 3.5rem; font-weight: bold; margin: 0; color: #000; line-height: 1;}
         .receipt-items { text-align: left; margin: 15px 0; border-top: 2px dashed #444; border-bottom: 2px dashed #444; padding: 15px 0;}
@@ -425,8 +448,7 @@
 
     function closeFullscreenQR() { document.getElementById('qris-fullscreen-overlay').style.display = 'none'; }
 
-    // FUNGSI NOTA DIGITAL
-    // Perubahan parameter untuk menerima nomor urut dan shift
+    // JS FUNGSI NOTA YANG DIPERBAIKI
     function showReceipt(pesanan, total, pembayaran, sequenceNumber, shift) {
         const receiptCard = document.getElementById('receipt-card');
         
@@ -444,12 +466,12 @@
 
         receiptCard.innerHTML = `
             <div class="receipt-header">
-                <img src="image_10.png" alt="Logo Feeling" class="receipt-logo">
-                <span style="font-size:0.9rem; font-weight:normal;">${eventName}</span>
+                <img src="Text Logo Option C.png" alt="Logo Feeling" class="receipt-logo">
+                <div class="receipt-event-name">${eventName}</div>
             </div>
             <div class="receipt-queue-title">No. Antrean:</div>
             <div class="receipt-queue-number">${sequenceNumber}</div>
-            <div style="font-size:0.8rem; margin-bottom:10px; color:#555;">Waktu: ${timeStr}</div>
+            <div style="font-size:0.8rem; margin-bottom:10px; color:#555; margin-top:5px;">Waktu: ${timeStr}</div>
             <div style="font-size:0.8rem; margin-bottom:10px; color:#555;">Shift: <strong>${shift}</strong></div>
             
             <div class="receipt-items">
@@ -475,7 +497,6 @@
         document.getElementById('receipt-overlay').style.display = 'none';
         
         document.getElementById('cash-given').value = '';
-        // Reset dropdown shift ke default
         document.getElementById('shift').value = "Shift 1";
         menus.forEach(m => m.qty = 0); 
         renderMenuGrid(); 
@@ -515,7 +536,6 @@
         .then(response => response.json())
         .then(data => {
             if(data.status === 'sukses'){
-                // Tampilkan nota dengan nomor antrean yang benar dan shift
                 showReceipt(pesanan, currentTotal, pembayaran, data.sequenceNumber, shift);
             } else { alert("Terjadi kesalahan: " + data.pesan); }
         })
