@@ -41,7 +41,7 @@
 
         .form-group { margin-bottom: 15px; }
         label.form-label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;}
-        select, input[type="text"].form-control, input[type="number"].form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 1rem; background-color: var(--input-bg); color: var(--text-color);}
+        select, input[type="text"].form-control, input[type="number"].form-control, textarea.form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 1rem; background-color: var(--input-bg); color: var(--text-color); font-family: inherit;}
         
         /* Grid Menu */
         .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
@@ -113,31 +113,9 @@
         /* TAMPILAN NOTA TRANSAKSI */
         #receipt-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 10000; justify-content: center; align-items: center; flex-direction: column; padding: 20px; box-sizing: border-box; cursor: pointer;}
         .receipt-card { background: #fff; color: #222; width: 100%; max-width: 320px; padding: 25px 20px; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; font-family: 'Courier New', Courier, monospace; position: relative;}
-        
-        /* CSS YANG DIPERBAIKI UNTUK HEADER NOTA */
-        .receipt-header { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;
-            border-bottom: 2px dashed #444; 
-            padding-bottom: 10px; 
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .receipt-logo { 
-            width: 140px; /* Ukuran logo di nota */
-            height: auto; 
-            margin-bottom: 8px; 
-            display: block;
-        }
-        .receipt-event-name {
-            font-size: 1rem;
-            font-weight: bold;
-            text-align: center;
-            width: 100%;
-        }
-
+        .receipt-header { display: flex; flex-direction: column; align-items: center; justify-content: center; border-bottom: 2px dashed #444; padding-bottom: 10px; margin-bottom: 10px;}
+        .receipt-logo { width: 140px; height: auto; margin-bottom: 8px; display: block;}
+        .receipt-event-name { font-size: 1rem; font-weight: bold; width: 100%;}
         .receipt-queue-title { font-size: 0.9rem; margin-top: 5px; }
         .receipt-queue-number { font-size: 3.5rem; font-weight: bold; margin: 0; color: #000; line-height: 1;}
         .receipt-items { text-align: left; margin: 15px 0; border-top: 2px dashed #444; border-bottom: 2px dashed #444; padding: 15px 0;}
@@ -145,6 +123,7 @@
         .receipt-total { font-weight: bold; font-size: 1.1rem; display: flex; justify-content: space-between; margin-bottom: 10px;}
         .receipt-footer { font-size: 0.85rem; margin-top: 20px; border-top: 2px dashed #444; padding-top: 15px;}
         .instruction-text { color: white; margin-top: 25px; font-size: 1rem; text-align: center; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 30px;}
+        .receipt-note { font-style: italic; background: #eee; padding: 8px; margin: 10px 0; font-size: 0.85rem; text-align: left; border-radius: 4px; border-left: 3px solid #444;}
     </style>
 </head>
 <body>
@@ -198,6 +177,11 @@
             <br>
             <div class="qris-amount-alert">Input Nominal: Rp <span id="qris-amount-text">0</span></div>
         </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 15px;">
+        <label class="form-label">Catatan Pesanan (Opsional)</label>
+        <textarea id="catatan" class="form-control" rows="2" placeholder="Contoh: Less sugar, meja 5, dsb..."></textarea>
     </div>
 
     <button class="btn-submit" onclick="submitData()">Kirim Transaksi</button>
@@ -269,7 +253,6 @@
         const savedEvent = localStorage.getItem('kopiFeeling_EventName');
         if (savedEvent) eventName = savedEvent;
         document.getElementById('display-event-name').innerText = "Event: " + eventName;
-
         const savedMenus = localStorage.getItem('kopiFeeling_Menus');
         if (savedMenus) {
             menus = JSON.parse(savedMenus);
@@ -298,10 +281,8 @@
     function openSettings() {
         document.getElementById('modal-settings').style.display = 'flex';
         document.getElementById('setting-event-name').value = eventName;
-        
         const settingList = document.getElementById('setting-menu-list');
         settingList.innerHTML = '';
-
         menus.forEach((menu, index) => {
             const item = document.createElement('div');
             item.className = 'setting-menu-item';
@@ -328,17 +309,14 @@
     function saveSettings() {
         const newEventName = document.getElementById('setting-event-name').value;
         if (newEventName.trim() === "") { alert("Nama Event tidak boleh kosong!"); return; }
-        
         eventName = newEventName;
         localStorage.setItem('kopiFeeling_EventName', eventName);
         document.getElementById('display-event-name').innerText = "Event: " + eventName;
-
         menus.forEach((menu, index) => {
             menu.price = parseInt(document.getElementById(`set-price-${index}`).value) || 0;
             menu.available = document.getElementById(`set-avail-${index}`).checked;
             if(!menu.available) menu.qty = 0; 
         });
-
         localStorage.setItem('kopiFeeling_Menus', JSON.stringify(menus));
         closeSettings();
         renderMenuGrid(); 
@@ -349,7 +327,6 @@
     function renderMenuGrid() {
         const grid = document.getElementById('menu-grid');
         grid.innerHTML = ''; 
-
         menus.forEach((menu, index) => {
             const card = document.createElement('div');
             card.className = `menu-card ${menu.available ? '' : 'disabled'}`;
@@ -383,13 +360,11 @@
         summaryList.innerHTML = '';
         currentTotal = 0;
         let hasOrder = false;
-
         menus.forEach(menu => {
             if (menu.qty > 0) {
                 hasOrder = true;
                 let subtotal = menu.price * menu.qty;
                 currentTotal += subtotal;
-
                 const li = document.createElement('li');
                 li.className = 'summary-item';
                 li.innerHTML = `
@@ -400,7 +375,6 @@
                 summaryList.appendChild(li);
             }
         });
-
         summaryEmpty.style.display = hasOrder ? 'none' : 'block';
         document.getElementById('total-price').innerText = currentTotal.toLocaleString('id-ID');
         document.getElementById('qris-amount-text').innerText = currentTotal.toLocaleString('id-ID');
@@ -424,7 +398,6 @@
         const cashGiven = parseInt(document.getElementById('cash-given').value) || 0;
         const changeAmountDisplay = document.getElementById('change-amount');
         const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
-
         if (pembayaran === 'Cash' && cashGiven > 0) {
             if (cashGiven >= currentTotal) {
                 const change = cashGiven - currentTotal;
@@ -448,56 +421,58 @@
 
     function closeFullscreenQR() { document.getElementById('qris-fullscreen-overlay').style.display = 'none'; }
 
-    // JS FUNGSI NOTA YANG DIPERBAIKI
-    function showReceipt(pesanan, total, pembayaran, sequenceNumber, shift) {
+    // NOTA DIGITAL DIPERBARUI
+    function showReceipt(pesanan, total, pembayaran, sequenceNumber, shift, cashGiven, kembalian, catatan) {
         const receiptCard = document.getElementById('receipt-card');
-        
         let itemsHtml = '';
         pesanan.forEach(p => {
-            itemsHtml += `
-                <div class="receipt-item">
-                    <span>${p.jumlah}x ${p.menu}</span>
-                </div>
-            `;
+            itemsHtml += `<div class="receipt-item"><span>${p.jumlah}x ${p.menu}</span></div>`;
         });
 
         const now = new Date();
         const timeStr = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 
+        let noteHtml = catatan ? `<div class="receipt-note"><strong>Catatan:</strong><br>${catatan}</div>` : '';
+        let cashHtml = pembayaran === 'Cash' ? `
+            <div class="receipt-item" style="font-size:0.8rem; font-weight:normal; border-top:1px dashed #ccc; margin-top:10px; padding-top:5px;">
+                <span>Bayar (Tunai):</span><span>Rp ${cashGiven.toLocaleString('id-ID')}</span>
+            </div>
+            <div class="receipt-item" style="font-size:0.8rem; font-weight:normal;">
+                <span>Kembali:</span><span>Rp ${kembalian.toLocaleString('id-ID')}</span>
+            </div>
+        ` : '';
+
         receiptCard.innerHTML = `
             <div class="receipt-header">
-                <img src="image_10.png" alt="Logo Feeling" class="receipt-logo">
+                <img src="Text Logo Option C.png" alt="Logo Feeling" class="receipt-logo">
                 <div class="receipt-event-name">${eventName}</div>
             </div>
             <div class="receipt-queue-title">No. Antrean:</div>
             <div class="receipt-queue-number">${sequenceNumber}</div>
-            <div style="font-size:0.8rem; margin-bottom:10px; color:#555; margin-top:5px;">Waktu: ${timeStr}</div>
-            <div style="font-size:0.8rem; margin-bottom:10px; color:#555;">Shift: <strong>${shift}</strong></div>
+            <div style="font-size:0.8rem; margin-bottom:10px; color:#555; margin-top:5px;">Waktu: ${timeStr} | Shift: ${shift}</div>
             
             <div class="receipt-items">
                 ${itemsHtml}
             </div>
             <div class="receipt-total">
-                <span>Total:</span>
+                <span>TOTAL:</span>
                 <span>Rp ${total.toLocaleString('id-ID')}</span>
             </div>
-            <div style="text-align:left; font-size:0.9rem; margin-bottom:10px;">
-                Tipe Bayar: <strong>${pembayaran}</strong>
-            </div>
+            ${cashHtml}
+            <div style="text-align:left; font-size:0.9rem; margin-bottom:10px;">Tipe Bayar: <strong>${pembayaran}</strong></div>
+            ${noteHtml}
             <div class="receipt-footer">
                 <strong>📸 FOTO NOTA INI 📸</strong><br>
-                Tunjukkan foto ini kepada kasir saat mengambil pesanan minuman Anda.
+                Tunjukkan saat pengambilan minuman.
             </div>
         `;
-        
         document.getElementById('receipt-overlay').style.display = 'flex';
     }
 
     function closeReceipt() {
         document.getElementById('receipt-overlay').style.display = 'none';
-        
         document.getElementById('cash-given').value = '';
-        document.getElementById('shift').value = "Shift 1";
+        document.getElementById('catatan').value = ''; // Reset Catatan
         menus.forEach(m => m.qty = 0); 
         renderMenuGrid(); 
         updateOrderSummary(); 
@@ -506,16 +481,15 @@
     function submitData() {
         const shift = document.getElementById('shift').value;
         const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
-
+        const catatan = document.getElementById('catatan').value;
+        const cashGiven = parseInt(document.getElementById('cash-given').value) || 0;
+        
         if (currentTotal === 0) { alert("Belum ada menu yang dipesan!"); return; }
-
-        if (pembayaran === 'Cash') {
-            const cashGiven = parseInt(document.getElementById('cash-given').value) || 0;
-            if (cashGiven < currentTotal) {
-                alert("Nominal uang tunai kurang dari total belanja!"); return;
-            }
+        if (pembayaran === 'Cash' && cashGiven < currentTotal) {
+            alert("Nominal uang tunai kurang!"); return;
         }
 
+        const kembalian = (pembayaran === 'Cash') ? (cashGiven - currentTotal) : 0;
         const pesanan = menus.filter(m => m.qty > 0).map(m => {
             return { menu: m.name, jumlah: m.qty };
         });
@@ -525,7 +499,10 @@
             shift: shift, 
             pesanan: pesanan, 
             total: currentTotal, 
-            pembayaran: pembayaran 
+            pembayaran: pembayaran,
+            catatan: catatan,
+            cashGiven: cashGiven,
+            kembalian: kembalian
         };
         
         const btnSubmit = document.querySelector('.btn-submit');
@@ -536,7 +513,7 @@
         .then(response => response.json())
         .then(data => {
             if(data.status === 'sukses'){
-                showReceipt(pesanan, currentTotal, pembayaran, data.sequenceNumber, shift);
+                showReceipt(pesanan, currentTotal, pembayaran, data.sequenceNumber, shift, cashGiven, kembalian, catatan);
             } else { alert("Terjadi kesalahan: " + data.pesan); }
         })
         .catch(error => { alert("Gagal menghubungi server."); console.error('Error!', error); })
