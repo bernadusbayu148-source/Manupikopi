@@ -15,7 +15,6 @@
             --card-bg: white;
             --input-bg: #fafafa;
             --primary-color: #b71c1c;
-            --header-bg: transparent;
         }
 
         /* Variabel Dark Mode */
@@ -33,16 +32,14 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-body); padding: 15px; color: var(--text-color); margin: 0; padding-bottom: 80px; transition: background-color 0.3s, color 0.3s;}
         .container { max-width: 600px; margin: 0 auto; background: var(--bg-container); padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); transition: background-color 0.3s;}
         
-        /* HEADER: Tombol Dark Mode, Judul, Tombol Setting */
+        /* HEADER */
         .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 2px dashed var(--border-color); padding-bottom: 10px;}
         .header-top h2 { margin: 0; color: var(--primary-color); font-size: 1.4rem;}
         .icon-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); padding: 5px;}
         
-        /* Indikator Event Aktif */
         .event-indicator { text-align: center; background: #e3f2fd; color: #1565c0; padding: 8px; border-radius: 8px; font-weight: bold; margin-bottom: 15px; border: 1px solid #90caf9;}
         body.dark-mode .event-indicator { background: #0d47a1; color: #bbdefb; border-color: #1976d2;}
 
-        /* Area Formulir Utama */
         .form-group { margin-bottom: 15px; }
         label.form-label { display: block; margin-bottom: 5px; font-weight: bold; color: var(--text-muted); font-size: 0.9rem;}
         select, input[type="text"].form-control, input[type="number"].form-control { width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; font-size: 1rem; background-color: var(--input-bg); color: var(--text-color);}
@@ -54,17 +51,14 @@
         .menu-title { font-weight: bold; font-size: 0.95rem; margin-bottom: 4px; line-height: 1.2;}
         .menu-price { color: var(--primary-color); font-size: 0.85rem; font-weight: bold; margin-bottom: 10px; flex-grow: 1;}
         
-        /* Kondisi Menu Habis */
         .menu-card.disabled { opacity: 0.5; filter: grayscale(80%); pointer-events: none; }
         .badge-habis { display: none; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); background: red; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-size: 1.2rem; transform: rotate(-10deg) translate(-50%, -50%); transform-origin: left;}
         .menu-card.disabled .badge-habis { display: block; }
 
-        /* Kontrol Qty */
         .qty-controls { display: flex; align-items: center; justify-content: space-between; background: var(--input-bg); border-radius: 20px; padding: 4px; border: 1px solid var(--border-color); }
         .btn-qty { width: 35px; height: 35px; background-color: var(--bg-container); color: var(--primary-color); border: 1px solid var(--border-color); border-radius: 50%; font-size: 1.2rem; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .qty-value { font-weight: bold; font-size: 1.1rem; width: 30px; text-align: center; }
 
-        /* Ringkasan Pesanan */
         .summary-area { background-color: var(--primary-color); color: white; padding: 15px; border-radius: 12px; margin-top: 20px; }
         .summary-area h3 { margin-top: 0; margin-bottom: 15px; font-size: 1.2rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px;}
         .summary-list { list-style: none; padding: 0; margin: 0; font-size: 0.95rem; }
@@ -74,7 +68,6 @@
         .summary-empty { text-align: center; font-style: italic; opacity: 0.8; font-size: 0.9rem; margin-bottom: 10px;}
         .total-box { font-size: 1.5rem; font-weight: bold; text-align: center; margin-top: 15px; padding: 10px; background: rgba(0,0,0,0.2); border-radius: 8px; }
         
-        /* Area Pembayaran */
         .payment-section { margin-top: 20px; background: var(--input-bg); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color);}
         .payment-methods { display: flex; gap: 20px; margin-top: 5px; }
         .payment-methods label { display: flex; align-items: center; gap: 5px; font-size: 1.1rem;}
@@ -87,7 +80,7 @@
         .btn-submit { background-color: #4CAF50; color: white; width: 100%; font-size: 1.2rem; padding: 15px; margin-top: 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
         .btn-submit:disabled { background-color: #a5d6a7; cursor: not-allowed; }
 
-        /* ================= MODAL SETTING ================= */
+        /* MODAL SETTING */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;}
         .modal-content { background: var(--bg-container); color: var(--text-color); width: 100%; max-width: 500px; max-height: 90vh; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
         .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px;}
@@ -100,7 +93,6 @@
         .setting-menu-controls { display: flex; gap: 10px; align-items: center;}
         .setting-price-input { width: 90px; padding: 5px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-container); color: var(--text-color);}
         
-        /* Toggle Switch untuk Ketersediaan */
         .switch { position: relative; display: inline-block; width: 40px; height: 20px; }
         .switch input { opacity: 0; width: 0; height: 0; }
         .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 20px; }
@@ -113,7 +105,6 @@
         .btn-cancel { background: #e0e0e0; color: #333; }
         .btn-save { background: var(--primary-color); color: white; }
 
-        /* Overlay QRIS Fullscreen */
         #qris-fullscreen-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: white; z-index: 9999; justify-content: center; align-items: center; flex-direction: column; padding: 20px; box-sizing: border-box; cursor: pointer; }
         body.dark-mode #qris-fullscreen-overlay { background-color: #121212; }
         .qris-fullscreen-img { width: 100%; max-width: 400px; height: auto; border-radius: 15px; margin-bottom: 30px; }
@@ -130,21 +121,16 @@
         <button class="icon-btn" onclick="openSettings()">⚙️</button>
     </div>
 
-    <div class="event-indicator" id="display-event-name">Event: Belum Diatur (Buka Setting)</div>
+    <div class="event-indicator" id="display-event-name">Event: Belum Diatur</div>
     
     <div class="form-group">
-        <label class="form-label">Shift</label>
+        <label class="form-label">Shift Penjualan</label>
         <select id="shift">
-            <option value="Shift 1">Shift 1 (Pagi - Sore)</option>
-            <option value="Shift 2">Shift 2 (Sore - Malam)</option>
+            <option value="Shift 1">Shift 1</option>
+            <option value="Shift 2">Shift 2</option>
         </select>
     </div>
 
-    <div class="form-group">
-        <label class="form-label">Nama Pilot Gerobak / Kasir</label>
-        <input type="text" id="pilot" class="form-control" placeholder="Masukkan nama..." required>
-    </div>
-    
     <div class="menu-grid" id="menu-grid"></div>
 
     <div class="summary-area">
@@ -190,17 +176,14 @@
         <div class="modal-body">
             <div class="form-group">
                 <label class="form-label">Nama Event Aktif</label>
-                <input type="text" id="setting-event-name" class="form-control" placeholder="Contoh: Pensi SMA 1 / Bazar Kemang">
-                <small style="color:var(--text-muted); font-size:0.8rem;">*Nama ini akan dibuatkan Sheet baru otomatis di Spreadsheet.</small>
+                <input type="text" id="setting-event-name" class="form-control" placeholder="Contoh: Bazar Kemang">
             </div>
-            
-            <h4 style="margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom:5px;">Atur Harga & Ketersediaan Menu</h4>
-            <div id="setting-menu-list">
-                </div>
+            <h4 style="margin-bottom: 10px; border-bottom: 1px solid var(--border-color); padding-bottom:5px;">Atur Harga & Ketersediaan</h4>
+            <div id="setting-menu-list"></div>
         </div>
         <div class="modal-footer">
             <button class="btn-modal btn-cancel" onclick="closeSettings()">Batal</button>
-            <button class="btn-modal btn-save" onclick="saveSettings()">Simpan Pengaturan</button>
+            <button class="btn-modal btn-save" onclick="saveSettings()">Simpan</button>
         </div>
     </div>
 </div>
@@ -212,10 +195,9 @@
 </div>
 
 <script>
-    // MASUKKAN URL WEB APP ANDA DI SINI
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzfB_fAcmumMfhfk2xBXelHiSYAoM52QArOUARESYD4_g5YFsCKcndPmyx68dIMSlNC/exec';
+    // MASUKKAN URL WEB APP ANDA DI BAWAH INI
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzJNTDv3JLvTH4Zn77AK0wvxA2eha-Vx1n6xzl8iW8v38mR6KNBmV6KNQ1xQLXP-bez/exec';
 
-    // MASTER MENU DEFAULT (Hanya dipakai jika belum ada data tersimpan di Local Storage)
     const defaultMenus = [
         { name: "Be Carefeels", price: 18000, qty: 0, img: "menu-becarefeels.png", available: true },
         { name: "Our Feeling", price: 15000, qty: 0, img: "menu-ourfeeling.png", available: true },
@@ -235,7 +217,6 @@
     let currentTotal = 0;
     let eventName = "Event Default";
 
-    // INISIALISASI SAAT HALAMAN DIBUKA
     window.onload = function() {
         loadDataFromStorage();
         applyTheme();
@@ -243,32 +224,23 @@
         togglePaymentSection();
     };
 
-    // ================= LOCAL STORAGE & INIT =================
     function loadDataFromStorage() {
-        // Load Nama Event
         const savedEvent = localStorage.getItem('kopiFeeling_EventName');
-        if (savedEvent) {
-            eventName = savedEvent;
-        }
+        if (savedEvent) eventName = savedEvent;
         document.getElementById('display-event-name').innerText = "Event: " + eventName;
 
-        // Load Menu (Harga & Ketersediaan yang sudah diedit)
         const savedMenus = localStorage.getItem('kopiFeeling_Menus');
         if (savedMenus) {
             menus = JSON.parse(savedMenus);
-            // Reset Qty jadi 0 setiap web di-refresh
             menus.forEach(m => m.qty = 0);
         } else {
-            // Copy default jika belum ada
             menus = JSON.parse(JSON.stringify(defaultMenus)); 
         }
     }
 
-    // ================= FITUR DARK MODE =================
     function toggleTheme() {
         const body = document.body;
         body.classList.toggle('dark-mode');
-        
         const isDark = body.classList.contains('dark-mode');
         localStorage.setItem('kopiFeeling_DarkMode', isDark ? 'yes' : 'no');
         document.getElementById('btn-theme').innerText = isDark ? '🌙' : '☀️';
@@ -282,12 +254,10 @@
         }
     }
 
-    // ================= FITUR MODAL SETTING =================
     function openSettings() {
         document.getElementById('modal-settings').style.display = 'flex';
         document.getElementById('setting-event-name').value = eventName;
         
-        // Generate list menu di dalam modal
         const settingList = document.getElementById('setting-menu-list');
         settingList.innerHTML = '';
 
@@ -312,12 +282,9 @@
         });
     }
 
-    function closeSettings() {
-        document.getElementById('modal-settings').style.display = 'none';
-    }
+    function closeSettings() { document.getElementById('modal-settings').style.display = 'none'; }
 
     function saveSettings() {
-        // Ambil dan simpan Nama Event
         const newEventName = document.getElementById('setting-event-name').value;
         if (newEventName.trim() === "") { alert("Nama Event tidak boleh kosong!"); return; }
         
@@ -325,33 +292,25 @@
         localStorage.setItem('kopiFeeling_EventName', eventName);
         document.getElementById('display-event-name').innerText = "Event: " + eventName;
 
-        // Ambil dan simpan perubahan harga & ketersediaan
         menus.forEach((menu, index) => {
-            const newPrice = parseInt(document.getElementById(`set-price-${index}`).value) || 0;
-            const isAvail = document.getElementById(`set-avail-${index}`).checked;
-            
-            menu.price = newPrice;
-            menu.available = isAvail;
-            if(!isAvail) menu.qty = 0; // Reset pesanan jika di set habis
+            menu.price = parseInt(document.getElementById(`set-price-${index}`).value) || 0;
+            menu.available = document.getElementById(`set-avail-${index}`).checked;
+            if(!menu.available) menu.qty = 0; 
         });
 
-        // Simpan ke Local Storage
         localStorage.setItem('kopiFeeling_Menus', JSON.stringify(menus));
-        
         closeSettings();
-        renderMenuGrid(); // Render ulang tampilan depan
+        renderMenuGrid(); 
         updateOrderSummary();
         alert("Pengaturan Event berhasil disimpan!");
     }
 
-    // ================= LOGIKA KASIR UTAMA =================
     function renderMenuGrid() {
         const grid = document.getElementById('menu-grid');
         grid.innerHTML = ''; 
 
         menus.forEach((menu, index) => {
             const card = document.createElement('div');
-            // Jika tidak available, tambahkan class disabled
             card.className = `menu-card ${menu.available ? '' : 'disabled'}`;
             card.innerHTML = `
                 <div class="badge-habis">HABIS</div>
@@ -369,14 +328,11 @@
     }
 
     function changeQty(index, delta) {
-        if (!menus[index].available) return; // Cegah penambahan jika habis
-        
+        if (!menus[index].available) return; 
         let newQty = menus[index].qty + delta;
         if (newQty < 0) newQty = 0; 
-        
         menus[index].qty = newQty;
         document.getElementById(`qty-${index}`).innerText = newQty; 
-        
         updateOrderSummary(); 
     }
 
@@ -385,7 +341,6 @@
         const summaryEmpty = document.getElementById('summary-empty');
         summaryList.innerHTML = '';
         currentTotal = 0;
-
         let hasOrder = false;
 
         menus.forEach(menu => {
@@ -406,10 +361,8 @@
         });
 
         summaryEmpty.style.display = hasOrder ? 'none' : 'block';
-        
         document.getElementById('total-price').innerText = currentTotal.toLocaleString('id-ID');
         document.getElementById('qris-amount-text').innerText = currentTotal.toLocaleString('id-ID');
-
         calculateChange();
     }
 
@@ -452,17 +405,12 @@
         document.getElementById('qris-fullscreen-overlay').style.display = 'flex';
     }
 
-    function closeFullscreenQR() {
-        document.getElementById('qris-fullscreen-overlay').style.display = 'none';
-    }
+    function closeFullscreenQR() { document.getElementById('qris-fullscreen-overlay').style.display = 'none'; }
 
-    // ================= KIRIM DATA KE GOOGLE APPS SCRIPT =================
     function submitData() {
         const shift = document.getElementById('shift').value;
-        const pilot = document.getElementById('pilot').value;
         const pembayaran = document.querySelector('input[name="pembayaran"]:checked').value;
 
-        if (!pilot) { alert("Nama Pilot Gerobak harus diisi!"); return; }
         if (currentTotal === 0) { alert("Belum ada menu yang dipesan!"); return; }
 
         if (pembayaran === 'Cash') {
@@ -476,11 +424,10 @@
             return { menu: m.name, jumlah: m.qty };
         });
 
-        // 'station' diganti dengan 'eventName' dari pengaturan
+        // Nama Pilot sudah dihapus dari payload
         const payload = { 
             station: eventName, 
             shift: shift, 
-            pilot: pilot, 
             pesanan: pesanan, 
             total: currentTotal, 
             pembayaran: pembayaran 
@@ -495,7 +442,6 @@
         .then(data => {
             if(data.status === 'sukses'){
                 alert("Transaksi berhasil dicatat!");
-                // Reset form
                 document.getElementById('cash-given').value = '';
                 menus.forEach(m => m.qty = 0); 
                 renderMenuGrid(); 
